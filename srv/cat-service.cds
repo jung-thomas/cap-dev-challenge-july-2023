@@ -1,5 +1,6 @@
 using { golf } from '../db/schema';
 
-service CatalogService @(path:'/browse') {
+@protocol: ['odata-v4', 'graphql']
+service CatalogService @(path:'browse') {
   entity Rounds as projection on golf.Rounds;
 }
