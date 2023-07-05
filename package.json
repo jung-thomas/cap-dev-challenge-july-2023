@@ -4,7 +4,9 @@
     "scripts": {
       "start": "cds run",
       "dev": "cds watch",
-      "build": "cds build"
+      "build": "cds build",
+      "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
+      "convert": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md"
     },
     "dependencies": {
       "@sap/cds": "^7",
@@ -12,7 +14,8 @@
       "express": "^4.17.1"
     },
     "devDependencies": {
-      "@cap-js/sqlite": "^1.0.0"
+      "@cap-js/sqlite": "^1.0.0",
+      "widdershins": "^4.0.1"
     }
   }
   
