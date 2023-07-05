@@ -4208,8 +4208,7 @@ const inputBody = '{
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -4344,8 +4343,7 @@ func main() {
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }
 ```
 
@@ -4828,8 +4826,7 @@ const inputBody = '{
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -4964,8 +4961,7 @@ func main() {
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }
 ```
 
@@ -5413,8 +5409,7 @@ Accept: application/json
 ```javascript
 const inputBody = '{
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -5547,8 +5542,7 @@ func main() {
 ```json
 {
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }
 ```
 
@@ -8975,8 +8969,7 @@ Rounds_holes
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }
 
 ```
@@ -8991,7 +8984,6 @@ Rounds_holes (for create)
 |ID|string(uuid)|true|none|none|
 |holeNumber|integer(int32)¦null|false|none|none|
 |par|integer(int32)¦null|false|none|none|
-|score|integer(int32)¦null|false|none|none|
 
 <h2 id="tocS_CatalogService.Rounds_holes-update">CatalogService.Rounds_holes-update</h2>
 <!-- backwards compatibility -->
@@ -9003,8 +8995,7 @@ Rounds_holes (for create)
 ```json
 {
   "holeNumber": 0,
-  "par": 0,
-  "score": 0
+  "par": 0
 }
 
 ```
@@ -9017,7 +9008,6 @@ Rounds_holes (for update)
 |---|---|---|---|---|
 |holeNumber|integer(int32)¦null|false|none|none|
 |par|integer(int32)¦null|false|none|none|
-|score|integer(int32)¦null|false|none|none|
 
 <h2 id="tocS_CatalogService.Rounds_holes_shots">CatalogService.Rounds_holes_shots</h2>
 <!-- backwards compatibility -->

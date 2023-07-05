@@ -14,22 +14,19 @@ entity Rounds : cuid, managed {
 aspect Holes : cuid {
   holeNumber: Integer @assert.range: [1,18];
   shots : Composition of many Shots;
-  @assert.range
-  par : Integer enum {
-    Three = 3;
-    Four = 4;
-    Five = 5;
-  };
+  par : Integer @assert.range: [3,5];
+  @Core.Computed
+  @readonly
   score : Integer;
 }
 
 entity Quality : sap.common.CodeList {
   key code : String(10)
 }
-
+@assert.target
 type quality : Association to Quality;
+
 aspect Shots : cuid {
- @assert.range
  quality: quality;
- distance: Integer;
+ distance: Integer @assert.range: [0,800];
 }

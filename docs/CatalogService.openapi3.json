@@ -2521,11 +2521,6 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
-          },
-          "score": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
           }
         },
         "required": [
@@ -2543,11 +2538,6 @@
             "nullable": true
           },
           "par": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "score": {
             "type": "integer",
             "format": "int32",
             "nullable": true
