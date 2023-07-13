@@ -3,16 +3,16 @@
     "version": "0.0.1",
     "scripts": {
       "start": "cds run",
-      "dev": "cds watch",
+      "dev": "cds watch --livereload false",
       "build": "cds build",
       "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
       "readme": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md"
     },
     "dependencies": {
-      "@sap/cds": "^7",
-      "@cap-js/graphql": "0.6.1",
+      "@sap/cds": "^7.0.2",
+      "@cap-js/graphql": "0.6.2",
       "@sap/cds-common-content": "^1.2.0",
-      "@sap/cds-dk": "^7.0.1",
+      "@sap/cds-dk": "^7.0.2",
       "@sap/cds-fiori": "^1.0.0",
       "@cap-js-community/odata-v2-adapter": "^1.11.0",
       "cds-swagger-ui-express": "^0.6.0",
