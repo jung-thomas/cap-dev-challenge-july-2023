@@ -11,6 +11,13 @@ entity Rounds : cuid, managed {
   holes : Composition of many Holes;
 }
 
+entity Result : sap.common.CodeList {
+  key code: Integer;
+}
+
+@assert.target
+type result : Association to Result;
+
 aspect Holes : cuid {
   holeNumber: Integer @assert.range: [1,18];
   shots : Composition of many Shots;
@@ -18,6 +25,7 @@ aspect Holes : cuid {
   @Core.Computed
   @readonly
   score : Integer;
+  result: result;
 }
 
 entity Quality : sap.common.CodeList {
@@ -25,6 +33,7 @@ entity Quality : sap.common.CodeList {
 }
 @assert.target
 type quality : Association to Quality;
+
 
 aspect Shots : cuid {
  quality: quality;

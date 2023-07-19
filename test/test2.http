@@ -1,0 +1,24 @@
+POST http://localhost:4004/odata/v4/browse/Rounds
+Content-Type: application/json
+
+{
+    "title": "Test",
+    "holes": [{
+        "holeNumber": 3,
+        "par": 4,
+        "shots": [
+            {
+                "quality_code": "good",
+                "distance": 100
+            },
+            {
+                "quality_code": "bad",
+                "distance": 20
+            },
+            {
+                "quality_code": "bad",
+                "distance": 40
+            }
+        ]  
+    }]
+}

@@ -1,0 +1,23 @@
+POST http://localhost:4004/odata/v4/browse/Rounds_holes
+Content-Type: application/json
+
+{
+        "up__ID": "58313bf0-b7d8-4ef4-b4fc-bfb9e357c905",
+        "holeNumber": 3,
+        "par": 4,
+        "shots": [
+            {
+                "quality_code": "good",
+                "distance": 100
+            },
+            {
+                "quality_code": "bad",
+                "distance": 20
+            },
+            {
+                "quality_code": "bad",
+                "distance": 40
+            }
+        ]  
+    
+}

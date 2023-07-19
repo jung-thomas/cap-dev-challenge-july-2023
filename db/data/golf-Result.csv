@@ -1,0 +1,10 @@
+code,name,descr
+-3,Albatross,Albatross
+-2,Eagle,Eagle
+-1,Birdie,Birdie
+0,Par,Par
+1,Bogey,Bogey
+2,Double Bogey,Double Bogey
+3,Triple Bogey,Triple Bogey
+100,Hole in One,Hole in One
+99,Out of Bounds,Out of Bounds
