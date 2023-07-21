@@ -6,6 +6,10 @@ annotate cs.Quality with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // Quality List
     UI       : {
+        PresentationVariant: {
+            SortOrder     : [{Property: code}],
+            Visualizations: ['@UI.LineItem']
+        },
         LineItem           : [
             {
                 $Type: 'UI.DataField',
@@ -22,10 +26,6 @@ annotate cs.Quality with @( // header-level annotations
                 ![@UI.Importance]: #High
             }
         ],
-        PresentationVariant: {
-            $Type    : 'UI.PresentationVariantType',
-            SortOrder: [{Property: code}]
-        },
         SelectionFields    : [
             code,
             name,
@@ -37,7 +37,7 @@ annotate cs.Quality with @( // header-level annotations
     // ---------------------------------------------------------------------------
     // Page Header
     UI       : {
-        HeaderInfo                    : {
+        HeaderInfo         : {
             Title         : {
                 $Type: 'UI.DataField',
                 Value: code,
@@ -46,7 +46,7 @@ annotate cs.Quality with @( // header-level annotations
             TypeNamePlural: '{i18n>Quality}',
             Description   : {Value: code}
         },
-        FieldGroup #Details           : {Data: [
+        FieldGroup #Details: {Data: [
             {
                 $Type: 'UI.DataField',
                 Value: code,
@@ -76,43 +76,45 @@ annotate cs.Quality with @( // header-level annotations
         {
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>localeDetails}',
-            Target: 'texts/@UI.LineItem'
+            Target: 'texts/@UI.PresentationVariant'
         }
     ]
 );
 
 annotate cs.Quality.texts with @( // header-level annotations
-       UI       : {
-        LineItem           : [
-            {
-                $Type: 'UI.DataField',
-                Value: code
-            },
-            {
-                $Type            : 'UI.DataField',
-                Value            : locale,
-                ![@UI.Importance]: #High
-            },
-            {
-                $Type            : 'UI.DataField',
-                Value            : name,
-                ![@UI.Importance]: #High
-            },
-                        {
-                $Type            : 'UI.DataField',
-                Value            : descr,
-                ![@UI.Importance]: #High
-            }
+UI: {
+    PresentationVariant: {
+        SortOrder     : [
+            {Property: code},
+            {Property: locale}
         ],
-        PresentationVariant: {
-            $Type    : 'UI.PresentationVariantType',
-            SortOrder: [{Property: code}]
+        Visualizations: ['@UI.LineItem']
+    },
+    LineItem           : [
+        {
+            $Type: 'UI.DataField',
+            Value: code
         },
-        SelectionFields    : [
-            code,
-            locale,
-            name,
-            descr
-        ]
-    }
-);
+        {
+            $Type            : 'UI.DataField',
+            Value            : locale,
+            ![@UI.Importance]: #High
+        },
+        {
+            $Type            : 'UI.DataField',
+            Value            : name,
+            ![@UI.Importance]: #High
+        },
+        {
+            $Type            : 'UI.DataField',
+            Value            : descr,
+            ![@UI.Importance]: #High
+        }
+    ],
+    SelectionFields    : [
+        code,
+        locale,
+        name,
+        descr
+    ]
+});
