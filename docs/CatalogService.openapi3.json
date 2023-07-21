@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service for namespace CatalogService",
-    "description": "This service is located at [/browse/](/browse/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Result{bg:lightslategray}],[Result]-*>[Result_texts],[Result]-0..1>[Result_texts],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes]-0..1>[Result],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Result_texts{bg:lightslategray}],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Result_texts%20{bg:lawngreen}]++-*>[Result_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Result%20{bg:lawngreen}]++-*>[Result],[Rounds%20{bg:lawngreen}]++-*>[Rounds])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/browse/](/browse/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Rounds]++-0..1>[DraftAdministrativeData],[Rounds]-0..1>[Rounds],[Result{bg:lightslategray}],[Result]-*>[Result_texts],[Result]-0..1>[Result_texts],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[DraftAdministrativeData{bg:lightslategray}],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes]-0..1>[Result],[Rounds_holes]++-0..1>[DraftAdministrativeData],[Rounds_holes]-0..1>[Rounds_holes],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Rounds_holes_shots]++-0..1>[DraftAdministrativeData],[Rounds_holes_shots]-0..1>[Rounds_holes_shots],[Result_texts{bg:lightslategray}],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Result_texts%20{bg:lawngreen}]++-*>[Result_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Result%20{bg:lawngreen}]++-*>[Result],[Rounds%20{bg:lawngreen}]++-*>[Rounds])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
@@ -15,7 +15,7 @@
   ],
   "tags": [
     {
-      "name": "{i18n>Quality}"
+      "name": "Quality"
     },
     {
       "name": "Quality_texts"
@@ -78,7 +78,7 @@
       "get": {
         "summary": "Retrieve a list of quality.",
         "tags": [
-          "{i18n>Quality}"
+          "Quality"
         ],
         "parameters": [
           {
@@ -190,7 +190,7 @@
       "post": {
         "summary": "Create a single quality.",
         "tags": [
-          "{i18n>Quality}"
+          "Quality"
         ],
         "requestBody": {
           "description": "New quality",
@@ -236,7 +236,7 @@
       "get": {
         "summary": "Retrieve a single quality.",
         "tags": [
-          "{i18n>Quality}"
+          "Quality"
         ],
         "parameters": [
           {
@@ -295,7 +295,7 @@
       "patch": {
         "summary": "Change a single quality.",
         "tags": [
-          "{i18n>Quality}"
+          "Quality"
         ],
         "requestBody": {
           "description": "New property values",
@@ -320,7 +320,7 @@
       "delete": {
         "summary": "Delete a single quality.",
         "tags": [
-          "{i18n>Quality}"
+          "Quality"
         ],
         "responses": {
           "204": {
@@ -346,9 +346,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve localized of a {i18n> quality}.",
+        "summary": "Retrieve localized of a quality.",
         "tags": [
-          "{i18n>Quality}",
+          "Quality",
           "Quality_texts"
         ],
         "parameters": [
@@ -403,9 +403,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of texts of a {i18n> quality}.",
+        "summary": "Retrieve a list of texts of a quality.",
         "tags": [
-          "{i18n>Quality}",
+          "Quality",
           "Quality_texts"
         ],
         "parameters": [
@@ -501,9 +501,9 @@
         }
       },
       "post": {
-        "summary": "Create a single text of a {i18n> quality}.",
+        "summary": "Create a single text of a quality.",
         "tags": [
-          "{i18n>Quality}",
+          "Quality",
           "Quality_texts"
         ],
         "requestBody": {
@@ -1515,7 +1515,13 @@
                   "modifiedBy",
                   "modifiedBy desc",
                   "title",
-                  "title desc"
+                  "title desc",
+                  "IsActiveEntity",
+                  "IsActiveEntity desc",
+                  "HasActiveEntity",
+                  "HasActiveEntity desc",
+                  "HasDraftEntity",
+                  "HasDraftEntity desc"
                 ]
               }
             }
@@ -1536,7 +1542,10 @@
                   "createdBy",
                   "modifiedAt",
                   "modifiedBy",
-                  "title"
+                  "title",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -1553,7 +1562,9 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "holes"
+                  "holes",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -1620,7 +1631,7 @@
         }
       }
     },
-    "/Rounds({ID})": {
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')": {
       "parameters": [
         {
           "description": "key: ID",
@@ -1631,6 +1642,16 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -1656,7 +1677,10 @@
                   "createdBy",
                   "modifiedAt",
                   "modifiedBy",
-                  "title"
+                  "title",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -1673,7 +1697,9 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "holes"
+                  "holes",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -1735,7 +1761,192 @@
         }
       }
     },
-    "/Rounds({ID})/holes": {
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogService.draftActivate": {
+      "post": {
+        "summary": "Invoke action draftActivate",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ]
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogService.draftEdit": {
+      "post": {
+        "summary": "Invoke action draftEdit",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PreserveChanges": {
+                    "type": "boolean",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/DraftAdministrativeData": {
       "parameters": [
         {
           "description": "key: ID",
@@ -1746,6 +1957,402 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve draft administrative data of a round.",
+        "tags": [
+          "Rounds"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "DraftUUID",
+                  "CreationDateTime",
+                  "CreatedByUser",
+                  "DraftIsCreatedByMe",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "InProcessByUser",
+                  "DraftIsProcessedByMe"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved draft administrative data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change draft administrative data of a round.",
+        "tags": [
+          "Rounds"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete draft administrative data of a round.",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve sibling entity of a round.",
+        "tags": [
+          "Rounds"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "ID",
+                  "createdAt",
+                  "createdBy",
+                  "modifiedAt",
+                  "modifiedBy",
+                  "title",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "holes",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved sibling entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Rounds"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogService.draftActivate": {
+      "post": {
+        "summary": "Invoke action draftActivate",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ]
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogService.draftEdit": {
+      "post": {
+        "summary": "Invoke action draftEdit",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PreserveChanges": {
+                    "type": "boolean",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds(ID={ID},IsActiveEntity='{IsActiveEntity}')/holes": {
+      "parameters": [
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -1798,7 +2405,13 @@
                   "score",
                   "score desc",
                   "result_code",
-                  "result_code desc"
+                  "result_code desc",
+                  "IsActiveEntity",
+                  "IsActiveEntity desc",
+                  "HasActiveEntity",
+                  "HasActiveEntity desc",
+                  "HasDraftEntity",
+                  "HasDraftEntity desc"
                 ]
               }
             }
@@ -1819,7 +2432,10 @@
                   "holeNumber",
                   "par",
                   "score",
-                  "result_code"
+                  "result_code",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -1838,7 +2454,9 @@
                   "*",
                   "up_",
                   "shots",
-                  "result"
+                  "result",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -1955,7 +2573,13 @@
                   "score",
                   "score desc",
                   "result_code",
-                  "result_code desc"
+                  "result_code desc",
+                  "IsActiveEntity",
+                  "IsActiveEntity desc",
+                  "HasActiveEntity",
+                  "HasActiveEntity desc",
+                  "HasDraftEntity",
+                  "HasDraftEntity desc"
                 ]
               }
             }
@@ -1976,7 +2600,10 @@
                   "holeNumber",
                   "par",
                   "score",
-                  "result_code"
+                  "result_code",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -1995,7 +2622,9 @@
                   "*",
                   "up_",
                   "shots",
-                  "result"
+                  "result",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2062,7 +2691,7 @@
         }
       }
     },
-    "/Rounds_holes(up__ID={up__ID},ID={ID})": {
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')": {
       "parameters": [
         {
           "description": "key: up__ID",
@@ -2084,6 +2713,16 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -2109,7 +2748,10 @@
                   "holeNumber",
                   "par",
                   "score",
-                  "result_code"
+                  "result_code",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -2128,7 +2770,9 @@
                   "*",
                   "up_",
                   "shots",
-                  "result"
+                  "result",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2190,7 +2834,85 @@
         }
       }
     },
-    "/Rounds_holes(up__ID={up__ID},ID={ID})/result": {
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds_holes"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/DraftAdministrativeData": {
       "parameters": [
         {
           "description": "key: up__ID",
@@ -2212,6 +2934,319 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve draft administrative data of a rounds_hole.",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "DraftUUID",
+                  "CreationDateTime",
+                  "CreatedByUser",
+                  "DraftIsCreatedByMe",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "InProcessByUser",
+                  "DraftIsProcessedByMe"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved draft administrative data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change draft administrative data of a rounds_hole.",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete draft administrative data of a rounds_hole.",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity": {
+      "parameters": [
+        {
+          "description": "key: up__ID",
+          "in": "path",
+          "name": "up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve sibling entity of a rounds_hole.",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "up__ID",
+                  "ID",
+                  "holeNumber",
+                  "par",
+                  "score",
+                  "result_code",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "up_",
+                  "shots",
+                  "result",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved sibling entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Rounds_holes"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds_holes"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/result": {
+      "parameters": [
+        {
+          "description": "key: up__ID",
+          "in": "path",
+          "name": "up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -2276,7 +3311,7 @@
         }
       }
     },
-    "/Rounds_holes(up__ID={up__ID},ID={ID})/shots": {
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/shots": {
       "parameters": [
         {
           "description": "key: up__ID",
@@ -2298,6 +3333,16 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -2348,7 +3393,13 @@
                   "quality_code",
                   "quality_code desc",
                   "distance",
-                  "distance desc"
+                  "distance desc",
+                  "IsActiveEntity",
+                  "IsActiveEntity desc",
+                  "HasActiveEntity",
+                  "HasActiveEntity desc",
+                  "HasDraftEntity",
+                  "HasDraftEntity desc"
                 ]
               }
             }
@@ -2368,7 +3419,10 @@
                   "up__ID",
                   "ID",
                   "quality_code",
-                  "distance"
+                  "distance",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -2386,7 +3440,9 @@
                 "enum": [
                   "*",
                   "up_",
-                  "quality"
+                  "quality",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2454,7 +3510,7 @@
         }
       }
     },
-    "/Rounds_holes(up__ID={up__ID},ID={ID})/up_": {
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_": {
       "parameters": [
         {
           "description": "key: up__ID",
@@ -2476,6 +3532,16 @@
             "type": "string",
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
           }
         }
       ],
@@ -2502,7 +3568,10 @@
                   "createdBy",
                   "modifiedAt",
                   "modifiedBy",
-                  "title"
+                  "title",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -2519,7 +3588,9 @@
                 "type": "string",
                 "enum": [
                   "*",
-                  "holes"
+                  "holes",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2538,6 +3609,224 @@
           },
           "4XX": {
             "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_/CatalogService.draftActivate": {
+      "post": {
+        "summary": "Invoke action draftActivate",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ]
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_/CatalogService.draftEdit": {
+      "post": {
+        "summary": "Invoke action draftEdit",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "PreserveChanges": {
+                    "type": "boolean",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -2589,7 +3878,13 @@
                   "quality_code",
                   "quality_code desc",
                   "distance",
-                  "distance desc"
+                  "distance desc",
+                  "IsActiveEntity",
+                  "IsActiveEntity desc",
+                  "HasActiveEntity",
+                  "HasActiveEntity desc",
+                  "HasDraftEntity",
+                  "HasDraftEntity desc"
                 ]
               }
             }
@@ -2609,7 +3904,10 @@
                   "up__ID",
                   "ID",
                   "quality_code",
-                  "distance"
+                  "distance",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -2627,7 +3925,9 @@
                 "enum": [
                   "*",
                   "up_",
-                  "quality"
+                  "quality",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2694,7 +3994,7 @@
         }
       }
     },
-    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID})": {
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')": {
       "parameters": [
         {
           "description": "key: up__up__ID",
@@ -2728,6 +4028,16 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
         }
       ],
       "get": {
@@ -2751,7 +4061,10 @@
                   "up__ID",
                   "ID",
                   "quality_code",
-                  "distance"
+                  "distance",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -2769,7 +4082,9 @@
                 "enum": [
                   "*",
                   "up_",
-                  "quality"
+                  "quality",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -2831,7 +4146,96 @@
         }
       }
     },
-    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID})/quality": {
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds_holes_shots"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__up__ID",
+            "in": "path",
+            "name": "up__up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/DraftAdministrativeData": {
       "parameters": [
         {
           "description": "key: up__up__ID",
@@ -2865,13 +4269,357 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve draft administrative data of a rounds_holes_shot.",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "DraftUUID",
+                  "CreationDateTime",
+                  "CreatedByUser",
+                  "DraftIsCreatedByMe",
+                  "LastChangeDateTime",
+                  "LastChangedByUser",
+                  "InProcessByUser",
+                  "DraftIsProcessedByMe"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved draft administrative data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change draft administrative data of a rounds_holes_shot.",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete draft administrative data of a rounds_holes_shot.",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity": {
+      "parameters": [
+        {
+          "description": "key: up__up__ID",
+          "in": "path",
+          "name": "up__up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: up__ID",
+          "in": "path",
+          "name": "up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve sibling entity of a rounds_holes_shot.",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "up__up__ID",
+                  "up__ID",
+                  "ID",
+                  "quality_code",
+                  "distance",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "up_",
+                  "quality",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved sibling entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Rounds_holes_shots"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/SiblingEntity/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds_holes_shots"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__up__ID",
+            "in": "path",
+            "name": "up__up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/quality": {
+      "parameters": [
+        {
+          "description": "key: up__up__ID",
+          "in": "path",
+          "name": "up__up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: up__ID",
+          "in": "path",
+          "name": "up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
         }
       ],
       "get": {
         "summary": "Retrieve quality of a rounds_holes_shot.",
         "tags": [
           "Rounds_holes_shots",
-          "{i18n>Quality}"
+          "Quality"
         ],
         "parameters": [
           {
@@ -2928,7 +4676,7 @@
         }
       }
     },
-    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID})/up_": {
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_": {
       "parameters": [
         {
           "description": "key: up__up__ID",
@@ -2962,6 +4710,16 @@
             "format": "uuid",
             "example": "01234567-89ab-cdef-0123-456789abcdef"
           }
+        },
+        {
+          "description": "key: IsActiveEntity",
+          "in": "path",
+          "name": "IsActiveEntity",
+          "required": true,
+          "schema": {
+            "type": "boolean",
+            "default": true
+          }
         }
       ],
       "get": {
@@ -2987,7 +4745,10 @@
                   "holeNumber",
                   "par",
                   "score",
-                  "result_code"
+                  "result_code",
+                  "IsActiveEntity",
+                  "HasActiveEntity",
+                  "HasDraftEntity"
                 ]
               }
             }
@@ -3006,7 +4767,9 @@
                   "*",
                   "up_",
                   "shots",
-                  "result"
+                  "result",
+                  "DraftAdministrativeData",
+                  "SiblingEntity"
                 ]
               }
             }
@@ -3028,10 +4791,235 @@
           }
         }
       }
+    },
+    "/Rounds_holes_shots(up__up__ID={up__up__ID},up__ID={up__ID},ID={ID},IsActiveEntity='{IsActiveEntity}')/up_/CatalogService.draftPrepare": {
+      "post": {
+        "summary": "Invoke action draftPrepare",
+        "tags": [
+          "Rounds_holes_shots"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CatalogService.Rounds_holes"
+                    }
+                  ],
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: up__up__ID",
+            "in": "path",
+            "name": "up__up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: up__ID",
+            "in": "path",
+            "name": "up__ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          },
+          {
+            "description": "key: IsActiveEntity",
+            "in": "path",
+            "name": "IsActiveEntity",
+            "required": true,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Action parameters",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "SideEffectsQualifier": {
+                    "type": "string",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
     "schemas": {
+      "CatalogService.DraftAdministrativeData": {
+        "title": "DraftAdministrativeData",
+        "type": "object",
+        "properties": {
+          "DraftUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsCreatedByMe": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "InProcessByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsProcessedByMe": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
+      "CatalogService.DraftAdministrativeData-create": {
+        "title": "DraftAdministrativeData (for create)",
+        "type": "object",
+        "properties": {
+          "DraftUUID": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          },
+          "CreationDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsCreatedByMe": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "InProcessByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsProcessedByMe": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "required": [
+          "DraftUUID"
+        ]
+      },
+      "CatalogService.DraftAdministrativeData-update": {
+        "title": "DraftAdministrativeData (for update)",
+        "type": "object",
+        "properties": {
+          "CreationDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "CreatedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsCreatedByMe": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "LastChangeDateTime": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2017-04-13T15:51:04.0000000Z",
+            "nullable": true
+          },
+          "LastChangedByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "InProcessByUser": {
+            "type": "string",
+            "maxLength": 256,
+            "nullable": true
+          },
+          "DraftIsProcessedByMe": {
+            "type": "boolean",
+            "nullable": true
+          }
+        }
+      },
       "CatalogService.Quality": {
         "title": "Quality",
         "type": "object",
@@ -3366,6 +5354,34 @@
           },
           "holes@odata.count": {
             "$ref": "#/components/schemas/count"
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.Rounds"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -3382,10 +5398,31 @@
             "type": "string",
             "maxLength": 111,
             "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
-          "ID"
+          "ID",
+          "IsActiveEntity"
         ]
       },
       "CatalogService.Rounds-update": {
@@ -3396,6 +5433,14 @@
             "type": "string",
             "maxLength": 111,
             "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -3452,6 +5497,34 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.Rounds_holes"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -3483,11 +5556,32 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
           "up__ID",
-          "ID"
+          "ID",
+          "IsActiveEntity"
         ]
       },
       "CatalogService.Rounds_holes-update": {
@@ -3508,6 +5602,14 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
           }
         }
       },
@@ -3550,6 +5652,34 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData"
+              }
+            ],
+            "nullable": true
+          },
+          "SiblingEntity": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.Rounds_holes_shots"
+              }
+            ],
+            "nullable": true
           }
         }
       },
@@ -3581,12 +5711,33 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "IsActiveEntity": {
+            "type": "boolean",
+            "default": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "DraftAdministrativeData": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.DraftAdministrativeData-create"
+              }
+            ],
+            "nullable": true
           }
         },
         "required": [
           "up__up__ID",
           "up__ID",
-          "ID"
+          "ID",
+          "IsActiveEntity"
         ]
       },
       "CatalogService.Rounds_holes_shots-update": {
@@ -3602,6 +5753,14 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "HasActiveEntity": {
+            "type": "boolean",
+            "default": false
+          },
+          "HasDraftEntity": {
+            "type": "boolean",
+            "default": false
           }
         }
       },

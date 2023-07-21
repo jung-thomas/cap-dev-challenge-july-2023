@@ -3,9 +3,12 @@
   "version": "0.0.1",
   "scripts": {
     "start": "cds run",
+    "pg": "cds watch --profile pg --livereload false",
     "dev": "cds watch --livereload false",
     "build": "cds build",
+    "build_pg": "cds deploy --profile pg",
     "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
+    "asyncapi": "cds compile srv --service all -o docs --to asyncapi",
     "readme": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md",
     "watch-golf": "cds watch --open golf/webapp/index.html?sap-ui-xx-viewCache=false"
   },
@@ -14,17 +17,37 @@
     "@cap-js/graphql": "0.6.2",
     "@sap/cds": "^7.0.3",
     "@sap/cds-common-content": "^1.2.0",
-    "@sap/cds-dk": "^7.0.2",
     "@sap/cds-fiori": "^1.0.0",
     "cds-swagger-ui-express": "^0.6.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "@sap/cds-hana": "^2.0.0"
   },
   "devDependencies": {
+    "@sap/cds-dk": "^7.0.3",
     "@cap-js/sqlite": "^1.0.0",
+    "@cap-js/postgres": "^1.0.1",    
     "@sap/ux-specification": "^1.108.10",
     "widdershins": "^4.0.1"
   },
   "cds": {
+    "requires": {
+      "[pg]": {
+        "db": {
+          "kind": "postgres",
+          "dialect": "postgres",
+          "impl": "@cap-js/postgres",
+          "schema_evolution": "auto",
+          "credentials": {
+            "host": "localhost",
+            "port": 5432,
+            "user": "postgres",
+            "password": "postgres",
+            "database": "postgres",
+            "schema": "golf"
+          }
+        }
+      }
+    },
     "cov2ap": {
       "plugin": true
     },
