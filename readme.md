@@ -26,7 +26,7 @@ headingLevel: 2
 This service is located at [/browse/](/browse/)
 
 ## Entity Data Model
-![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Rounds%20{bg:lawngreen}]++-*>[Rounds])
+![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Result{bg:lightslategray}],[Result]-*>[Result_texts],[Result]-0..1>[Result_texts],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes]-0..1>[Result],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Result_texts{bg:lightslategray}],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Result_texts%20{bg:lawngreen}]++-*>[Result_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Result%20{bg:lawngreen}]++-*>[Result],[Rounds%20{bg:lawngreen}]++-*>[Rounds])
 
 ### Legend
 ![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])
@@ -35,7 +35,7 @@ Base URLs:
 
 * <a href="/browse">/browse</a>
 
-<h1 id="-quality">Quality</h1>
+<h1 id="--i18n-quality-">{i18n>Quality}</h1>
 
 ## Retrieve a list of quality.
 
@@ -1079,7 +1079,7 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Retrieve localized of a quality.
+## Retrieve localized of a {i18n> quality}.
 
 > Code samples
 
@@ -1220,7 +1220,7 @@ func main() {
 
 `GET /Quality('{code}')/localized`
 
-<h3 id="retrieve-localized-of-a-quality.-parameters">Parameters</h3>
+<h3 id="retrieve-localized-of-a-{i18n>-quality}.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1249,7 +1249,7 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-localized-of-a-quality.-responses">Responses</h3>
+<h3 id="retrieve-localized-of-a-{i18n>-quality}.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -1260,7 +1260,7 @@ func main() {
 This operation does not require authentication
 </aside>
 
-## Retrieve a list of texts of a quality.
+## Retrieve a list of texts of a {i18n> quality}.
 
 > Code samples
 
@@ -1401,7 +1401,7 @@ func main() {
 
 `GET /Quality('{code}')/texts`
 
-<h3 id="retrieve-a-list-of-texts-of-a-quality.-parameters">Parameters</h3>
+<h3 id="retrieve-a-list-of-texts-of-a-{i18n>-quality}.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1449,14 +1449,14 @@ func main() {
 }
 ```
 
-<h3 id="retrieve-a-list-of-texts-of-a-quality.-responses">Responses</h3>
+<h3 id="retrieve-a-list-of-texts-of-a-{i18n>-quality}.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
 |200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved texts|Inline|
 |4XX|Unknown|Error|[error](#schemaerror)|
 
-<h3 id="retrieve-a-list-of-texts-of-a-quality.-responseschema">Response Schema</h3>
+<h3 id="retrieve-a-list-of-texts-of-a-{i18n>-quality}.-responseschema">Response Schema</h3>
 
 Status Code **200**
 
@@ -1493,7 +1493,7 @@ Status Code **200**
 This operation does not require authentication
 </aside>
 
-## Create a single text of a quality.
+## Create a single text of a {i18n> quality}.
 
 > Code samples
 
@@ -1657,7 +1657,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-text-of-a-quality.-parameters">Parameters</h3>
+<h3 id="create-a-single-text-of-a-{i18n>-quality}.-parameters">Parameters</h3>
 
 |Name|In|Type|Required|Description|
 |---|---|---|---|---|
@@ -1677,7 +1677,7 @@ func main() {
 }
 ```
 
-<h3 id="create-a-single-text-of-a-quality.-responses">Responses</h3>
+<h3 id="create-a-single-text-of-a-{i18n>-quality}.-responses">Responses</h3>
 
 |Status|Meaning|Description|Schema|
 |---|---|---|---|
@@ -2680,6 +2680,2651 @@ func main() {
 This operation does not require authentication
 </aside>
 
+<h1 id="-result">Result</h1>
+
+## Retrieve a list of result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result`
+
+<h3 id="retrieve-a-list-of-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$top|query|integer|false|Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)|
+|$skip|query|integer|false|Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)|
+|$search|query|string|false|Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)|
+|$filter|query|string|false|Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)|
+|$count|query|boolean|false|Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)|
+|$orderby|query|array[string]|false|Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$orderby|name|
+|$orderby|name desc|
+|$orderby|descr|
+|$orderby|descr desc|
+|$orderby|code|
+|$orderby|code desc|
+|$select|name|
+|$select|descr|
+|$select|code|
+|$expand|*|
+|$expand|texts|
+|$expand|localized|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "@odata.count": 0,
+  "value": [
+    {
+      "name": "string",
+      "descr": "string",
+      "code": 0,
+      "texts": [
+        {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      ],
+      "texts@odata.count": 0,
+      "localized": {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    }
+  ]
+}
+```
+
+<h3 id="retrieve-a-list-of-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved result|Inline|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieve-a-list-of-result.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*Collection of Result*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+
+*anyOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|number|false|none|none|
+
+*or*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|string|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» value|[[CatalogService.Result](#schemacatalogservice.result)]|false|none|none|
+|»» Result|[CatalogService.Result](#schemacatalogservice.result)|false|none|none|
+|»»» name|string¦null|false|none|none|
+|»»» descr|string¦null|false|none|none|
+|»»» code|integer(int32)|false|none|none|
+|»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»» locale|string|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» descr|string¦null|false|none|none|
+|»»»»» code|integer(int32)|false|none|none|
+|»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»» locale|string|false|none|none|
+|»»»» name|string¦null|false|none|none|
+|»»»» descr|string¦null|false|none|none|
+|»»»» code|integer(int32)|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Create a single result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST /browse/Result \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST /browse/Result HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post '/browse/Result',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/browse/Result', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','/browse/Result', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "/browse/Result", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /Result`
+
+> Body parameter
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="create-a-single-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CatalogService.Result-create](#schemacatalogservice.result-create)|true|New result|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0,
+  "texts": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ],
+  "texts@odata.count": 0,
+  "localized": {
+    "locale": "string",
+    "name": "string",
+    "descr": "string",
+    "code": 0
+  }
+}
+```
+
+<h3 id="create-a-single-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created result|[CatalogService.Result](#schemacatalogservice.result)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Retrieve a single result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result({code}) \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result({code}) HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result({code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result({code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result({code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result({code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result({code})`
+
+<h3 id="retrieve-a-single-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+|code|path|integer(int32)|true|key: code|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$select|name|
+|$select|descr|
+|$select|code|
+|$expand|*|
+|$expand|texts|
+|$expand|localized|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0,
+  "texts": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ],
+  "texts@odata.count": 0,
+  "localized": {
+    "locale": "string",
+    "name": "string",
+    "descr": "string",
+    "code": 0
+  }
+}
+```
+
+<h3 id="retrieve-a-single-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved result|[CatalogService.Result](#schemacatalogservice.result)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Change a single result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PATCH /browse/Result({code}) \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PATCH /browse/Result({code}) HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "name": "string",
+  "descr": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})',
+{
+  method: 'PATCH',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.patch '/browse/Result({code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.patch('/browse/Result({code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PATCH','/browse/Result({code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PATCH");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PATCH", "/browse/Result({code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PATCH /Result({code})`
+
+> Body parameter
+
+```json
+{
+  "name": "string",
+  "descr": "string"
+}
+```
+
+<h3 id="change-a-single-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CatalogService.Result-update](#schemacatalogservice.result-update)|true|New property values|
+|code|path|integer(int32)|true|key: code|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="change-a-single-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Delete a single result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /browse/Result({code}) \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE /browse/Result({code}) HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete '/browse/Result({code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('/browse/Result({code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','/browse/Result({code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "/browse/Result({code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /Result({code})`
+
+<h3 id="delete-a-single-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|code|path|integer(int32)|true|key: code|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="delete-a-single-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Retrieve localized of a result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result({code})/localized \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result({code})/localized HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})/localized',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result({code})/localized',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result({code})/localized', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result({code})/localized', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})/localized");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result({code})/localized", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result({code})/localized`
+
+<h3 id="retrieve-localized-of-a-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|code|path|integer(int32)|true|key: code|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$select|locale|
+|$select|name|
+|$select|descr|
+|$select|code|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="retrieve-localized-of-a-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Retrieve a list of texts of a result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result({code})/texts \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result({code})/texts HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})/texts',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result({code})/texts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result({code})/texts', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result({code})/texts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})/texts");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result({code})/texts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result({code})/texts`
+
+<h3 id="retrieve-a-list-of-texts-of-a-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$top|query|integer|false|Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)|
+|$skip|query|integer|false|Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)|
+|$search|query|string|false|Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)|
+|$filter|query|string|false|Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)|
+|$count|query|boolean|false|Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)|
+|$orderby|query|array[string]|false|Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|code|path|integer(int32)|true|key: code|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$orderby|locale|
+|$orderby|locale desc|
+|$orderby|name|
+|$orderby|name desc|
+|$orderby|descr|
+|$orderby|descr desc|
+|$orderby|code|
+|$orderby|code desc|
+|$select|locale|
+|$select|name|
+|$select|descr|
+|$select|code|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "@odata.count": 0,
+  "value": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ]
+}
+```
+
+<h3 id="retrieve-a-list-of-texts-of-a-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved texts|Inline|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieve-a-list-of-texts-of-a-result.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*Collection of Result_texts*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+
+*anyOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|number|false|none|none|
+
+*or*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|string|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» value|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»» locale|string|false|none|none|
+|»»» name|string¦null|false|none|none|
+|»»» descr|string¦null|false|none|none|
+|»»» code|integer(int32)|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Create a single text of a result.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST /browse/Result({code})/texts \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST /browse/Result({code})/texts HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result({code})/texts',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post '/browse/Result({code})/texts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/browse/Result({code})/texts', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','/browse/Result({code})/texts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result({code})/texts");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "/browse/Result({code})/texts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /Result({code})/texts`
+
+> Body parameter
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="create-a-single-text-of-a-result.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CatalogService.Result_texts-create](#schemacatalogservice.result_texts-create)|true|New text|
+|code|path|integer(int32)|true|key: code|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="create-a-single-text-of-a-result.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created text|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+<h1 id="-result_texts">Result_texts</h1>
+
+## Retrieve a list of result_texts.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result_texts \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result_texts HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result_texts',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result_texts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result_texts', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result_texts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result_texts");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result_texts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result_texts`
+
+<h3 id="retrieve-a-list-of-result_texts.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$top|query|integer|false|Show only the first n items, see [Paging - Top](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptiontop)|
+|$skip|query|integer|false|Skip the first n items, see [Paging - Skip](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionskip)|
+|$search|query|string|false|Search items by search phrases, see [Searching](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionsearch)|
+|$filter|query|string|false|Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)|
+|$count|query|boolean|false|Include count of items, see [Count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount)|
+|$orderby|query|array[string]|false|Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$orderby|locale|
+|$orderby|locale desc|
+|$orderby|name|
+|$orderby|name desc|
+|$orderby|descr|
+|$orderby|descr desc|
+|$orderby|code|
+|$orderby|code desc|
+|$select|locale|
+|$select|name|
+|$select|descr|
+|$select|code|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "@odata.count": 0,
+  "value": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ]
+}
+```
+
+<h3 id="retrieve-a-list-of-result_texts.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved result_texts|Inline|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<h3 id="retrieve-a-list-of-result_texts.-responseschema">Response Schema</h3>
+
+Status Code **200**
+
+*Collection of Result_texts*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» @odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+
+*anyOf*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|number|false|none|none|
+
+*or*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|»» *anonymous*|string|false|none|none|
+
+*continued*
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|» value|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»» locale|string|false|none|none|
+|»»» name|string¦null|false|none|none|
+|»»» descr|string¦null|false|none|none|
+|»»» code|integer(int32)|false|none|none|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Create a single result_text.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X POST /browse/Result_texts \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+POST /browse/Result_texts HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result_texts',
+{
+  method: 'POST',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.post '/browse/Result_texts',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.post('/browse/Result_texts', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('POST','/browse/Result_texts', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result_texts");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("POST");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("POST", "/browse/Result_texts", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`POST /Result_texts`
+
+> Body parameter
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="create-a-single-result_text.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CatalogService.Result_texts-create](#schemacatalogservice.result_texts-create)|true|New result_text|
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="create-a-single-result_text.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|Created result_text|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Retrieve a single result_text.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Result_texts(locale='{locale}',code={code}) \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Result_texts(locale='{locale}',code={code}) HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result_texts(locale='{locale}',code={code})',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Result_texts(locale='{locale}',code={code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Result_texts(locale='{locale}',code={code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Result_texts(locale='{locale}',code={code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result_texts(locale='{locale}',code={code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Result_texts(locale='{locale}',code={code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Result_texts(locale='{locale}',code={code})`
+
+<h3 id="retrieve-a-single-result_text.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|locale|path|string|true|key: locale|
+|code|path|integer(int32)|true|key: code|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$select|locale|
+|$select|name|
+|$select|descr|
+|$select|code|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+```
+
+<h3 id="retrieve-a-single-result_text.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved result_text|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Change a single result_text.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X PATCH /browse/Result_texts(locale='{locale}',code={code}) \
+  -H 'Content-Type: application/json' \
+  -H 'Accept: application/json'
+
+```
+
+```http
+PATCH /browse/Result_texts(locale='{locale}',code={code}) HTTP/1.1
+
+Content-Type: application/json
+Accept: application/json
+
+```
+
+```javascript
+const inputBody = '{
+  "name": "string",
+  "descr": "string"
+}';
+const headers = {
+  'Content-Type':'application/json',
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result_texts(locale='{locale}',code={code})',
+{
+  method: 'PATCH',
+  body: inputBody,
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Content-Type' => 'application/json',
+  'Accept' => 'application/json'
+}
+
+result = RestClient.patch '/browse/Result_texts(locale='{locale}',code={code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.patch('/browse/Result_texts(locale='{locale}',code={code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Content-Type' => 'application/json',
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('PATCH','/browse/Result_texts(locale='{locale}',code={code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result_texts(locale='{locale}',code={code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("PATCH");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Content-Type": []string{"application/json"},
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("PATCH", "/browse/Result_texts(locale='{locale}',code={code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`PATCH /Result_texts(locale='{locale}',code={code})`
+
+> Body parameter
+
+```json
+{
+  "name": "string",
+  "descr": "string"
+}
+```
+
+<h3 id="change-a-single-result_text.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|body|body|[CatalogService.Result_texts-update](#schemacatalogservice.result_texts-update)|true|New property values|
+|locale|path|string|true|key: locale|
+|code|path|integer(int32)|true|key: code|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="change-a-single-result_text.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
+## Delete a single result_text.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X DELETE /browse/Result_texts(locale='{locale}',code={code}) \
+  -H 'Accept: application/json'
+
+```
+
+```http
+DELETE /browse/Result_texts(locale='{locale}',code={code}) HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Result_texts(locale='{locale}',code={code})',
+{
+  method: 'DELETE',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.delete '/browse/Result_texts(locale='{locale}',code={code})',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.delete('/browse/Result_texts(locale='{locale}',code={code})', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('DELETE','/browse/Result_texts(locale='{locale}',code={code})', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Result_texts(locale='{locale}',code={code})");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("DELETE");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("DELETE", "/browse/Result_texts(locale='{locale}',code={code})", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`DELETE /Result_texts(locale='{locale}',code={code})`
+
+<h3 id="delete-a-single-result_text.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|locale|path|string|true|key: locale|
+|code|path|integer(int32)|true|key: code|
+
+> Example responses
+
+> 4XX Response
+
+```json
+{
+  "error": {
+    "code": "string",
+    "message": "string",
+    "target": "string",
+    "details": [
+      {
+        "code": "string",
+        "message": "string",
+        "target": "string"
+      }
+    ],
+    "innererror": {}
+  }
+}
+```
+
+<h3 id="delete-a-single-result_text.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|204|[No Content](https://tools.ietf.org/html/rfc7231#section-6.3.5)|Success|None|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
 <h1 id="-rounds">Rounds</h1>
 
 ## Retrieve a list of rounds.
@@ -2914,7 +5559,28 @@ func main() {
           ],
           "shots@odata.count": 0,
           "par": 0,
-          "score": 0
+          "score": 0,
+          "result": {
+            "name": "string",
+            "descr": "string",
+            "code": 0,
+            "texts": [
+              {
+                "locale": "string",
+                "name": "string",
+                "descr": "string",
+                "code": 0
+              }
+            ],
+            "texts@odata.count": 0,
+            "localized": {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          },
+          "result_code": 0
         }
       ],
       "holes@odata.count": 0
@@ -2997,6 +5663,23 @@ Status Code **200**
 |»»»»» shots@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»»»» par|integer(int32)¦null|false|none|none|
 |»»»»» score|integer(int32)¦null|false|none|none|
+|»»»»» result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|»»»»»» name|string¦null|false|none|none|
+|»»»»»» descr|string¦null|false|none|none|
+|»»»»»» code|integer(int32)|false|none|none|
+|»»»»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»»»»» locale|string|false|none|none|
+|»»»»»»»» name|string¦null|false|none|none|
+|»»»»»»»» descr|string¦null|false|none|none|
+|»»»»»»»» code|integer(int32)|false|none|none|
+|»»»»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»»»»» locale|string|false|none|none|
+|»»»»»»» name|string¦null|false|none|none|
+|»»»»»»» descr|string¦null|false|none|none|
+|»»»»»»» code|integer(int32)|false|none|none|
+|»»»»» result_code|integer(int32)¦null|false|none|none|
 |»»» holes@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 
 <aside class="success">
@@ -3228,7 +5911,28 @@ func main() {
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ],
   "holes@odata.count": 0
@@ -3467,7 +6171,28 @@ func main() {
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ],
   "holes@odata.count": 0
@@ -4032,14 +6757,18 @@ func main() {
 |$orderby|par desc|
 |$orderby|score|
 |$orderby|score desc|
+|$orderby|result_code|
+|$orderby|result_code desc|
 |$select|up__ID|
 |$select|ID|
 |$select|holeNumber|
 |$select|par|
 |$select|score|
+|$select|result_code|
 |$expand|*|
 |$expand|up_|
 |$expand|shots|
+|$expand|result|
 
 > Example responses
 
@@ -4097,7 +6826,28 @@ func main() {
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ]
 }
@@ -4178,6 +6928,23 @@ Status Code **200**
 |»»» shots@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»» par|integer(int32)¦null|false|none|none|
 |»»» score|integer(int32)¦null|false|none|none|
+|»»» result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|»»»» name|string¦null|false|none|none|
+|»»»» descr|string¦null|false|none|none|
+|»»»» code|integer(int32)|false|none|none|
+|»»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»»» locale|string|false|none|none|
+|»»»»»» name|string¦null|false|none|none|
+|»»»»»» descr|string¦null|false|none|none|
+|»»»»»» code|integer(int32)|false|none|none|
+|»»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»»» locale|string|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» descr|string¦null|false|none|none|
+|»»»»» code|integer(int32)|false|none|none|
+|»»» result_code|integer(int32)¦null|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -4208,7 +6975,8 @@ const inputBody = '{
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -4343,7 +7111,8 @@ func main() {
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }
 ```
 
@@ -4405,7 +7174,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       }
     ],
     "holes@odata.count": 0
@@ -4434,7 +7224,28 @@ func main() {
         "shots": [],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -4465,7 +7276,28 @@ func main() {
   ],
   "shots@odata.count": 0,
   "par": 0,
-  "score": 0
+  "score": 0,
+  "result": {
+    "name": "string",
+    "descr": "string",
+    "code": 0,
+    "texts": [
+      {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    ],
+    "texts@odata.count": 0,
+    "localized": {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  },
+  "result_code": 0
 }
 ```
 
@@ -4650,14 +7482,18 @@ func main() {
 |$orderby|par desc|
 |$orderby|score|
 |$orderby|score desc|
+|$orderby|result_code|
+|$orderby|result_code desc|
 |$select|up__ID|
 |$select|ID|
 |$select|holeNumber|
 |$select|par|
 |$select|score|
+|$select|result_code|
 |$expand|*|
 |$expand|up_|
 |$expand|shots|
+|$expand|result|
 
 > Example responses
 
@@ -4715,7 +7551,28 @@ func main() {
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ]
 }
@@ -4796,6 +7653,23 @@ Status Code **200**
 |»»» shots@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»» par|integer(int32)¦null|false|none|none|
 |»»» score|integer(int32)¦null|false|none|none|
+|»»» result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|»»»» name|string¦null|false|none|none|
+|»»»» descr|string¦null|false|none|none|
+|»»»» code|integer(int32)|false|none|none|
+|»»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»»» locale|string|false|none|none|
+|»»»»»» name|string¦null|false|none|none|
+|»»»»»» descr|string¦null|false|none|none|
+|»»»»»» code|integer(int32)|false|none|none|
+|»»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»»» locale|string|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» descr|string¦null|false|none|none|
+|»»»»» code|integer(int32)|false|none|none|
+|»»» result_code|integer(int32)¦null|false|none|none|
 
 <aside class="success">
 This operation does not require authentication
@@ -4826,7 +7700,8 @@ const inputBody = '{
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -4961,7 +7836,8 @@ func main() {
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }
 ```
 
@@ -5022,7 +7898,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       }
     ],
     "holes@odata.count": 0
@@ -5051,7 +7948,28 @@ func main() {
         "shots": [],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -5082,7 +8000,28 @@ func main() {
   ],
   "shots@odata.count": 0,
   "par": 0,
-  "score": 0
+  "score": 0,
+  "result": {
+    "name": "string",
+    "descr": "string",
+    "code": 0,
+    "texts": [
+      {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    ],
+    "texts@odata.count": 0,
+    "localized": {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  },
+  "result_code": 0
 }
 ```
 
@@ -5256,9 +8195,11 @@ func main() {
 |$select|holeNumber|
 |$select|par|
 |$select|score|
+|$select|result_code|
 |$expand|*|
 |$expand|up_|
 |$expand|shots|
+|$expand|result|
 
 > Example responses
 
@@ -5311,7 +8252,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       }
     ],
     "holes@odata.count": 0
@@ -5340,7 +8302,28 @@ func main() {
         "shots": [],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -5371,7 +8354,28 @@ func main() {
   ],
   "shots@odata.count": 0,
   "par": 0,
-  "score": 0
+  "score": 0,
+  "result": {
+    "name": "string",
+    "descr": "string",
+    "code": 0,
+    "texts": [
+      {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    ],
+    "texts@odata.count": 0,
+    "localized": {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  },
+  "result_code": 0
 }
 ```
 
@@ -5409,7 +8413,8 @@ Accept: application/json
 ```javascript
 const inputBody = '{
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }';
 const headers = {
   'Content-Type':'application/json',
@@ -5542,7 +8547,8 @@ func main() {
 ```json
 {
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }
 ```
 
@@ -5768,6 +8774,205 @@ func main() {
 This operation does not require authentication
 </aside>
 
+## Retrieve result of a rounds_hole.
+
+> Code samples
+
+```shell
+# You can also use wget
+curl -X GET /browse/Rounds_holes(up__ID={up__ID},ID={ID})/result \
+  -H 'Accept: application/json'
+
+```
+
+```http
+GET /browse/Rounds_holes(up__ID={up__ID},ID={ID})/result HTTP/1.1
+
+Accept: application/json
+
+```
+
+```javascript
+
+const headers = {
+  'Accept':'application/json'
+};
+
+fetch('/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result',
+{
+  method: 'GET',
+
+  headers: headers
+})
+.then(function(res) {
+    return res.json();
+}).then(function(body) {
+    console.log(body);
+});
+
+```
+
+```ruby
+require 'rest-client'
+require 'json'
+
+headers = {
+  'Accept' => 'application/json'
+}
+
+result = RestClient.get '/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result',
+  params: {
+  }, headers: headers
+
+p JSON.parse(result)
+
+```
+
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result', headers = headers)
+
+print(r.json())
+
+```
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+$headers = array(
+    'Accept' => 'application/json',
+);
+
+$client = new \GuzzleHttp\Client();
+
+// Define array of request body.
+$request_body = array();
+
+try {
+    $response = $client->request('GET','/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result', array(
+        'headers' => $headers,
+        'json' => $request_body,
+       )
+    );
+    print_r($response->getBody()->getContents());
+ }
+ catch (\GuzzleHttp\Exception\BadResponseException $e) {
+    // handle exception or api errors.
+    print_r($e->getMessage());
+ }
+
+ // ...
+
+```
+
+```java
+URL obj = new URL("/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result");
+HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+con.setRequestMethod("GET");
+int responseCode = con.getResponseCode();
+BufferedReader in = new BufferedReader(
+    new InputStreamReader(con.getInputStream()));
+String inputLine;
+StringBuffer response = new StringBuffer();
+while ((inputLine = in.readLine()) != null) {
+    response.append(inputLine);
+}
+in.close();
+System.out.println(response.toString());
+
+```
+
+```go
+package main
+
+import (
+       "bytes"
+       "net/http"
+)
+
+func main() {
+
+    headers := map[string][]string{
+        "Accept": []string{"application/json"},
+    }
+
+    data := bytes.NewBuffer([]byte{jsonReq})
+    req, err := http.NewRequest("GET", "/browse/Rounds_holes(up__ID={up__ID},ID={ID})/result", data)
+    req.Header = headers
+
+    client := &http.Client{}
+    resp, err := client.Do(req)
+    // ...
+}
+
+```
+
+`GET /Rounds_holes(up__ID={up__ID},ID={ID})/result`
+
+<h3 id="retrieve-result-of-a-rounds_hole.-parameters">Parameters</h3>
+
+|Name|In|Type|Required|Description|
+|---|---|---|---|---|
+|$select|query|array[string]|false|Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)|
+|$expand|query|array[string]|false|The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)|
+|up__ID|path|string(uuid)|true|key: up__ID|
+|ID|path|string(uuid)|true|key: ID|
+
+#### Enumerated Values
+
+|Parameter|Value|
+|---|---|
+|$select|name|
+|$select|descr|
+|$select|code|
+|$expand|*|
+|$expand|texts|
+|$expand|localized|
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0,
+  "texts": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ],
+  "texts@odata.count": 0,
+  "localized": {
+    "locale": "string",
+    "name": "string",
+    "descr": "string",
+    "code": 0
+  }
+}
+```
+
+<h3 id="retrieve-result-of-a-rounds_hole.-responses">Responses</h3>
+
+|Status|Meaning|Description|Schema|
+|---|---|---|---|
+|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|Retrieved result|[CatalogService.Result](#schemacatalogservice.result)|
+|4XX|Unknown|Error|[error](#schemaerror)|
+
+<aside class="success">
+This operation does not require authentication
+</aside>
+
 ## Retrieve a list of shots of a rounds_hole.
 
 > Code samples
@@ -5977,7 +9182,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -6063,6 +9289,23 @@ Status Code **200**
 |»»»» shots@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»»» par|integer(int32)¦null|false|none|none|
 |»»»» score|integer(int32)¦null|false|none|none|
+|»»»» result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» descr|string¦null|false|none|none|
+|»»»»» code|integer(int32)|false|none|none|
+|»»»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»»»» locale|string|false|none|none|
+|»»»»»»» name|string¦null|false|none|none|
+|»»»»»»» descr|string¦null|false|none|none|
+|»»»»»»» code|integer(int32)|false|none|none|
+|»»»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»»»» locale|string|false|none|none|
+|»»»»»» name|string¦null|false|none|none|
+|»»»»»» descr|string¦null|false|none|none|
+|»»»»»» code|integer(int32)|false|none|none|
+|»»»» result_code|integer(int32)¦null|false|none|none|
 |»»» up__up__ID|string(uuid)|false|none|none|
 |»»» up__ID|string(uuid)|false|none|none|
 |»»» ID|string(uuid)|false|none|none|
@@ -6317,7 +9560,28 @@ func main() {
     ],
     "shots@odata.count": 0,
     "par": 0,
-    "score": 0
+    "score": 0,
+    "result": {
+      "name": "string",
+      "descr": "string",
+      "code": 0,
+      "texts": [
+        {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      ],
+      "texts@odata.count": 0,
+      "localized": {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    },
+    "result_code": 0
   },
   "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -6580,7 +9844,28 @@ func main() {
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ],
   "holes@odata.count": 0
@@ -6807,7 +10092,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -6893,6 +10199,23 @@ Status Code **200**
 |»»»» shots@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |»»»» par|integer(int32)¦null|false|none|none|
 |»»»» score|integer(int32)¦null|false|none|none|
+|»»»» result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|»»»»» name|string¦null|false|none|none|
+|»»»»» descr|string¦null|false|none|none|
+|»»»»» code|integer(int32)|false|none|none|
+|»»»»» texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|»»»»»» Result_texts|[CatalogService.Result_texts](#schemacatalogservice.result_texts)|false|none|none|
+|»»»»»»» locale|string|false|none|none|
+|»»»»»»» name|string¦null|false|none|none|
+|»»»»»»» descr|string¦null|false|none|none|
+|»»»»»»» code|integer(int32)|false|none|none|
+|»»»»» texts@odata.count|any|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|»»»»» localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+|»»»»»» locale|string|false|none|none|
+|»»»»»» name|string¦null|false|none|none|
+|»»»»»» descr|string¦null|false|none|none|
+|»»»»»» code|integer(int32)|false|none|none|
+|»»»» result_code|integer(int32)¦null|false|none|none|
 |»»» up__up__ID|string(uuid)|false|none|none|
 |»»» up__ID|string(uuid)|false|none|none|
 |»»» ID|string(uuid)|false|none|none|
@@ -7145,7 +10468,28 @@ func main() {
     ],
     "shots@odata.count": 0,
     "par": 0,
-    "score": 0
+    "score": 0,
+    "result": {
+      "name": "string",
+      "descr": "string",
+      "code": 0,
+      "texts": [
+        {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      ],
+      "texts@odata.count": 0,
+      "localized": {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    },
+    "result_code": 0
   },
   "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -7404,7 +10748,28 @@ func main() {
     ],
     "shots@odata.count": 0,
     "par": 0,
-    "score": 0
+    "score": 0,
+    "result": {
+      "name": "string",
+      "descr": "string",
+      "code": 0,
+      "texts": [
+        {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      ],
+      "texts@odata.count": 0,
+      "localized": {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    },
+    "result_code": 0
   },
   "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -8189,9 +11554,11 @@ func main() {
 |$select|holeNumber|
 |$select|par|
 |$select|score|
+|$select|result_code|
 |$expand|*|
 |$expand|up_|
 |$expand|shots|
+|$expand|result|
 
 > Example responses
 
@@ -8244,7 +11611,28 @@ func main() {
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       }
     ],
     "holes@odata.count": 0
@@ -8273,7 +11661,28 @@ func main() {
         "shots": [],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -8304,7 +11713,28 @@ func main() {
   ],
   "shots@odata.count": 0,
   "par": 0,
-  "score": 0
+  "score": 0,
+  "result": {
+    "name": "string",
+    "descr": "string",
+    "code": 0,
+    "texts": [
+      {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    ],
+    "texts@odata.count": 0,
+    "localized": {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  },
+  "result_code": 0
 }
 ```
 
@@ -8692,6 +12122,180 @@ Quality_texts (for update)
 |name|string¦null|false|none|none|
 |descr|string¦null|false|none|none|
 
+<h2 id="tocS_CatalogService.Result">CatalogService.Result</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result"></a>
+<a id="schema_CatalogService.Result"></a>
+<a id="tocScatalogservice.result"></a>
+<a id="tocscatalogservice.result"></a>
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0,
+  "texts": [
+    {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  ],
+  "texts@odata.count": 0,
+  "localized": {
+    "locale": "string",
+    "name": "string",
+    "descr": "string",
+    "code": 0
+  }
+}
+
+```
+
+Result
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+|code|integer(int32)|false|none|none|
+|texts|[[CatalogService.Result_texts](#schemacatalogservice.result_texts)]|false|none|none|
+|texts@odata.count|[count](#schemacount)|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
+|localized|[CatalogService.Result_texts](#schemacatalogservice.result_texts)¦null|false|none|none|
+
+<h2 id="tocS_CatalogService.Result-create">CatalogService.Result-create</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result-create"></a>
+<a id="schema_CatalogService.Result-create"></a>
+<a id="tocScatalogservice.result-create"></a>
+<a id="tocscatalogservice.result-create"></a>
+
+```json
+{
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+
+```
+
+Result (for create)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+|code|integer(int32)|true|none|none|
+
+<h2 id="tocS_CatalogService.Result-update">CatalogService.Result-update</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result-update"></a>
+<a id="schema_CatalogService.Result-update"></a>
+<a id="tocScatalogservice.result-update"></a>
+<a id="tocscatalogservice.result-update"></a>
+
+```json
+{
+  "name": "string",
+  "descr": "string"
+}
+
+```
+
+Result (for update)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+
+<h2 id="tocS_CatalogService.Result_texts">CatalogService.Result_texts</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result_texts"></a>
+<a id="schema_CatalogService.Result_texts"></a>
+<a id="tocScatalogservice.result_texts"></a>
+<a id="tocscatalogservice.result_texts"></a>
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+
+```
+
+Result_texts
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|locale|string|false|none|none|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+|code|integer(int32)|false|none|none|
+
+<h2 id="tocS_CatalogService.Result_texts-create">CatalogService.Result_texts-create</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result_texts-create"></a>
+<a id="schema_CatalogService.Result_texts-create"></a>
+<a id="tocScatalogservice.result_texts-create"></a>
+<a id="tocscatalogservice.result_texts-create"></a>
+
+```json
+{
+  "locale": "string",
+  "name": "string",
+  "descr": "string",
+  "code": 0
+}
+
+```
+
+Result_texts (for create)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|locale|string|true|none|none|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+|code|integer(int32)|true|none|none|
+
+<h2 id="tocS_CatalogService.Result_texts-update">CatalogService.Result_texts-update</h2>
+<!-- backwards compatibility -->
+<a id="schemacatalogservice.result_texts-update"></a>
+<a id="schema_CatalogService.Result_texts-update"></a>
+<a id="tocScatalogservice.result_texts-update"></a>
+<a id="tocscatalogservice.result_texts-update"></a>
+
+```json
+{
+  "name": "string",
+  "descr": "string"
+}
+
+```
+
+Result_texts (for update)
+
+### Properties
+
+|Name|Type|Required|Restrictions|Description|
+|---|---|---|---|---|
+|name|string¦null|false|none|none|
+|descr|string¦null|false|none|none|
+
 <h2 id="tocS_CatalogService.Rounds">CatalogService.Rounds</h2>
 <!-- backwards compatibility -->
 <a id="schemacatalogservice.rounds"></a>
@@ -8754,7 +12358,28 @@ Quality_texts (for update)
       ],
       "shots@odata.count": 0,
       "par": 0,
-      "score": 0
+      "score": 0,
+      "result": {
+        "name": "string",
+        "descr": "string",
+        "code": 0,
+        "texts": [
+          {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        ],
+        "texts@odata.count": 0,
+        "localized": {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      },
+      "result_code": 0
     }
   ],
   "holes@odata.count": 0
@@ -8877,7 +12502,28 @@ Rounds (for update)
         ],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       }
     ],
     "holes@odata.count": 0
@@ -8906,7 +12552,28 @@ Rounds (for update)
         "shots": [],
         "shots@odata.count": 0,
         "par": 0,
-        "score": 0
+        "score": 0,
+        "result": {
+          "name": "string",
+          "descr": "string",
+          "code": 0,
+          "texts": [
+            {
+              "locale": "string",
+              "name": "string",
+              "descr": "string",
+              "code": 0
+            }
+          ],
+          "texts@odata.count": 0,
+          "localized": {
+            "locale": "string",
+            "name": "string",
+            "descr": "string",
+            "code": 0
+          }
+        },
+        "result_code": 0
       },
       "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
       "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
@@ -8937,7 +12604,28 @@ Rounds (for update)
   ],
   "shots@odata.count": 0,
   "par": 0,
-  "score": 0
+  "score": 0,
+  "result": {
+    "name": "string",
+    "descr": "string",
+    "code": 0,
+    "texts": [
+      {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    ],
+    "texts@odata.count": 0,
+    "localized": {
+      "locale": "string",
+      "name": "string",
+      "descr": "string",
+      "code": 0
+    }
+  },
+  "result_code": 0
 }
 
 ```
@@ -8956,6 +12644,8 @@ Rounds_holes
 |shots@odata.count|[count](#schemacount)|false|none|The number of entities in the collection. Available when using the [$count](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptioncount) query option.|
 |par|integer(int32)¦null|false|none|none|
 |score|integer(int32)¦null|false|none|none|
+|result|[CatalogService.Result](#schemacatalogservice.result)¦null|false|none|none|
+|result_code|integer(int32)¦null|false|none|none|
 
 <h2 id="tocS_CatalogService.Rounds_holes-create">CatalogService.Rounds_holes-create</h2>
 <!-- backwards compatibility -->
@@ -8969,7 +12659,8 @@ Rounds_holes
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "ID": "01234567-89ab-cdef-0123-456789abcdef",
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }
 
 ```
@@ -8984,6 +12675,7 @@ Rounds_holes (for create)
 |ID|string(uuid)|true|none|none|
 |holeNumber|integer(int32)¦null|false|none|none|
 |par|integer(int32)¦null|false|none|none|
+|result_code|integer(int32)¦null|false|none|none|
 
 <h2 id="tocS_CatalogService.Rounds_holes-update">CatalogService.Rounds_holes-update</h2>
 <!-- backwards compatibility -->
@@ -8995,7 +12687,8 @@ Rounds_holes (for create)
 ```json
 {
   "holeNumber": 0,
-  "par": 0
+  "par": 0,
+  "result_code": 0
 }
 
 ```
@@ -9008,6 +12701,7 @@ Rounds_holes (for update)
 |---|---|---|---|---|
 |holeNumber|integer(int32)¦null|false|none|none|
 |par|integer(int32)¦null|false|none|none|
+|result_code|integer(int32)¦null|false|none|none|
 
 <h2 id="tocS_CatalogService.Rounds_holes_shots">CatalogService.Rounds_holes_shots</h2>
 <!-- backwards compatibility -->
@@ -9066,7 +12760,28 @@ Rounds_holes (for update)
     ],
     "shots@odata.count": 0,
     "par": 0,
-    "score": 0
+    "score": 0,
+    "result": {
+      "name": "string",
+      "descr": "string",
+      "code": 0,
+      "texts": [
+        {
+          "locale": "string",
+          "name": "string",
+          "descr": "string",
+          "code": 0
+        }
+      ],
+      "texts@odata.count": 0,
+      "localized": {
+        "locale": "string",
+        "name": "string",
+        "descr": "string",
+        "code": 0
+      }
+    },
+    "result_code": 0
   },
   "up__up__ID": "01234567-89ab-cdef-0123-456789abcdef",
   "up__ID": "01234567-89ab-cdef-0123-456789abcdef",

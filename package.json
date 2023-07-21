@@ -9,7 +9,7 @@
       "readme": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md"
     },
     "dependencies": {
-      "@sap/cds": "^7.0.2",
+      "@sap/cds": "^7.0.3",
       "@cap-js/graphql": "0.6.2",
       "@sap/cds-common-content": "^1.2.0",
       "@sap/cds-dk": "^7.0.2",

@@ -2,7 +2,7 @@
   "openapi": "3.0.2",
   "info": {
     "title": "Service for namespace CatalogService",
-    "description": "This service is located at [/browse/](/browse/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Rounds%20{bg:lawngreen}]++-*>[Rounds])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
+    "description": "This service is located at [/browse/](/browse/)\n\n## Entity Data Model\n![ER Diagram](https://yuml.me/diagram/class/[Rounds{bg:lightslategray}],[Rounds]-*[Rounds_holes],[Result{bg:lightslategray}],[Result]-*>[Result_texts],[Result]-0..1>[Result_texts],[Quality{bg:lightslategray}],[Quality]-*>[Quality_texts],[Quality]-0..1>[Quality_texts],[Rounds_holes{bg:lightslategray}],[Rounds_holes]-*[Rounds_holes_shots],[Rounds_holes]-0..1>[Result],[Rounds_holes_shots{bg:lightslategray}],[Rounds_holes_shots]-0..1>[Quality],[Result_texts{bg:lightslategray}],[Quality_texts{bg:lightslategray}],[Quality_texts%20{bg:lawngreen}]++-*>[Quality_texts],[Result_texts%20{bg:lawngreen}]++-*>[Result_texts],[Rounds_holes_shots%20{bg:lawngreen}]++-*>[Rounds_holes_shots],[Rounds_holes%20{bg:lawngreen}]++-*>[Rounds_holes],[Quality%20{bg:lawngreen}]++-*>[Quality],[Result%20{bg:lawngreen}]++-*>[Result],[Rounds%20{bg:lawngreen}]++-*>[Rounds])\n\n### Legend\n![Legend](https://yuml.me/diagram/plain;dir:TB;scale:60/class/[External.Type{bg:whitesmoke}],[ComplexType],[EntityType{bg:lightslategray}],[EntitySet/Singleton/Operation{bg:lawngreen}])",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
@@ -15,10 +15,16 @@
   ],
   "tags": [
     {
-      "name": "Quality"
+      "name": "{i18n>Quality}"
     },
     {
       "name": "Quality_texts"
+    },
+    {
+      "name": "Result"
+    },
+    {
+      "name": "Result_texts"
     },
     {
       "name": "Rounds"
@@ -72,7 +78,7 @@
       "get": {
         "summary": "Retrieve a list of quality.",
         "tags": [
-          "Quality"
+          "{i18n>Quality}"
         ],
         "parameters": [
           {
@@ -184,7 +190,7 @@
       "post": {
         "summary": "Create a single quality.",
         "tags": [
-          "Quality"
+          "{i18n>Quality}"
         ],
         "requestBody": {
           "description": "New quality",
@@ -230,7 +236,7 @@
       "get": {
         "summary": "Retrieve a single quality.",
         "tags": [
-          "Quality"
+          "{i18n>Quality}"
         ],
         "parameters": [
           {
@@ -289,7 +295,7 @@
       "patch": {
         "summary": "Change a single quality.",
         "tags": [
-          "Quality"
+          "{i18n>Quality}"
         ],
         "requestBody": {
           "description": "New property values",
@@ -314,7 +320,7 @@
       "delete": {
         "summary": "Delete a single quality.",
         "tags": [
-          "Quality"
+          "{i18n>Quality}"
         ],
         "responses": {
           "204": {
@@ -340,9 +346,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve localized of a quality.",
+        "summary": "Retrieve localized of a {i18n> quality}.",
         "tags": [
-          "Quality",
+          "{i18n>Quality}",
           "Quality_texts"
         ],
         "parameters": [
@@ -397,9 +403,9 @@
         }
       ],
       "get": {
-        "summary": "Retrieve a list of texts of a quality.",
+        "summary": "Retrieve a list of texts of a {i18n> quality}.",
         "tags": [
-          "Quality",
+          "{i18n>Quality}",
           "Quality_texts"
         ],
         "parameters": [
@@ -495,9 +501,9 @@
         }
       },
       "post": {
-        "summary": "Create a single text of a quality.",
+        "summary": "Create a single text of a {i18n> quality}.",
         "tags": [
-          "Quality",
+          "{i18n>Quality}",
           "Quality_texts"
         ],
         "requestBody": {
@@ -753,6 +759,702 @@
         "summary": "Delete a single quality_text.",
         "tags": [
           "Quality_texts"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result": {
+      "get": {
+        "summary": "Retrieve a list of result.",
+        "tags": [
+          "Result"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "name desc",
+                  "descr",
+                  "descr desc",
+                  "code",
+                  "code desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "texts",
+                  "localized"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Result",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CatalogService.Result"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single result.",
+        "tags": [
+          "Result"
+        ],
+        "requestBody": {
+          "description": "New result",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Result-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result({code})": {
+      "parameters": [
+        {
+          "description": "key: code",
+          "in": "path",
+          "name": "code",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single result.",
+        "tags": [
+          "Result"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "texts",
+                  "localized"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single result.",
+        "tags": [
+          "Result"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Result-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single result.",
+        "tags": [
+          "Result"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result({code})/localized": {
+      "parameters": [
+        {
+          "description": "key: code",
+          "in": "path",
+          "name": "code",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve localized of a result.",
+        "tags": [
+          "Result",
+          "Result_texts"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved localized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result({code})/texts": {
+      "parameters": [
+        {
+          "description": "key: code",
+          "in": "path",
+          "name": "code",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a list of texts of a result.",
+        "tags": [
+          "Result",
+          "Result_texts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "locale desc",
+                  "name",
+                  "name desc",
+                  "descr",
+                  "descr desc",
+                  "code",
+                  "code desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved texts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Result_texts",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CatalogService.Result_texts"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single text of a result.",
+        "tags": [
+          "Result",
+          "Result_texts"
+        ],
+        "requestBody": {
+          "description": "New text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Result_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result_texts": {
+      "get": {
+        "summary": "Retrieve a list of result_texts.",
+        "tags": [
+          "Result_texts"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/top"
+          },
+          {
+            "$ref": "#/components/parameters/skip"
+          },
+          {
+            "$ref": "#/components/parameters/search"
+          },
+          {
+            "name": "$filter",
+            "description": "Filter items by property values, see [Filtering](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionfilter)",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/count"
+          },
+          {
+            "name": "$orderby",
+            "description": "Order items by property values, see [Sorting](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionorderby)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "locale desc",
+                  "name",
+                  "name desc",
+                  "descr",
+                  "descr desc",
+                  "code",
+                  "code desc"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved result_texts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Collection of Result_texts",
+                  "properties": {
+                    "@odata.count": {
+                      "$ref": "#/components/schemas/count"
+                    },
+                    "value": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CatalogService.Result_texts"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a single result_text.",
+        "tags": [
+          "Result_texts"
+        ],
+        "requestBody": {
+          "description": "New result_text",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Result_texts-create"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created result_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Result_texts(locale='{locale}',code={code})": {
+      "parameters": [
+        {
+          "description": "key: locale",
+          "in": "path",
+          "name": "locale",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "maxLength": 14
+          }
+        },
+        {
+          "description": "key: code",
+          "in": "path",
+          "name": "code",
+          "required": true,
+          "schema": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve a single result_text.",
+        "tags": [
+          "Result_texts"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "locale",
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved result_text",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result_texts"
+                }
+              }
+            }
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Change a single result_text.",
+        "tags": [
+          "Result_texts"
+        ],
+        "requestBody": {
+          "description": "New property values",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CatalogService.Result_texts-update"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a single result_text.",
+        "tags": [
+          "Result_texts"
         ],
         "responses": {
           "204": {
@@ -1094,7 +1796,9 @@
                   "par",
                   "par desc",
                   "score",
-                  "score desc"
+                  "score desc",
+                  "result_code",
+                  "result_code desc"
                 ]
               }
             }
@@ -1114,7 +1818,8 @@
                   "ID",
                   "holeNumber",
                   "par",
-                  "score"
+                  "score",
+                  "result_code"
                 ]
               }
             }
@@ -1132,7 +1837,8 @@
                 "enum": [
                   "*",
                   "up_",
-                  "shots"
+                  "shots",
+                  "result"
                 ]
               }
             }
@@ -1247,7 +1953,9 @@
                   "par",
                   "par desc",
                   "score",
-                  "score desc"
+                  "score desc",
+                  "result_code",
+                  "result_code desc"
                 ]
               }
             }
@@ -1267,7 +1975,8 @@
                   "ID",
                   "holeNumber",
                   "par",
-                  "score"
+                  "score",
+                  "result_code"
                 ]
               }
             }
@@ -1285,7 +1994,8 @@
                 "enum": [
                   "*",
                   "up_",
-                  "shots"
+                  "shots",
+                  "result"
                 ]
               }
             }
@@ -1398,7 +2108,8 @@
                   "ID",
                   "holeNumber",
                   "par",
-                  "score"
+                  "score",
+                  "result_code"
                 ]
               }
             }
@@ -1416,7 +2127,8 @@
                 "enum": [
                   "*",
                   "up_",
-                  "shots"
+                  "shots",
+                  "result"
                 ]
               }
             }
@@ -1471,6 +2183,92 @@
         "responses": {
           "204": {
             "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        }
+      }
+    },
+    "/Rounds_holes(up__ID={up__ID},ID={ID})/result": {
+      "parameters": [
+        {
+          "description": "key: up__ID",
+          "in": "path",
+          "name": "up__ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        },
+        {
+          "description": "key: ID",
+          "in": "path",
+          "name": "ID",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid",
+            "example": "01234567-89ab-cdef-0123-456789abcdef"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Retrieve result of a rounds_hole.",
+        "tags": [
+          "Rounds_holes",
+          "Result"
+        ],
+        "parameters": [
+          {
+            "name": "$select",
+            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "name",
+                  "descr",
+                  "code"
+                ]
+              }
+            }
+          },
+          {
+            "name": "$expand",
+            "description": "The value of $expand query option is a comma-separated list of navigation property names, stream property names, or $value indicating the stream content of a media-entity. The corresponding related entities and stream values will be represented inline, see [Expand](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionexpand)",
+            "in": "query",
+            "explode": false,
+            "schema": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "enum": [
+                  "*",
+                  "texts",
+                  "localized"
+                ]
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retrieved result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CatalogService.Result"
+                }
+              }
+            }
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -2073,7 +2871,7 @@
         "summary": "Retrieve quality of a rounds_holes_shot.",
         "tags": [
           "Rounds_holes_shots",
-          "Quality"
+          "{i18n>Quality}"
         ],
         "parameters": [
           {
@@ -2188,7 +2986,8 @@
                   "ID",
                   "holeNumber",
                   "par",
-                  "score"
+                  "score",
+                  "result_code"
                 ]
               }
             }
@@ -2206,7 +3005,8 @@
                 "enum": [
                   "*",
                   "up_",
-                  "shots"
+                  "shots",
+                  "result"
                 ]
               }
             }
@@ -2376,6 +3176,150 @@
           }
         }
       },
+      "CatalogService.Result": {
+        "title": "Result",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "texts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CatalogService.Result_texts"
+            }
+          },
+          "texts@odata.count": {
+            "$ref": "#/components/schemas/count"
+          },
+          "localized": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.Result_texts"
+              }
+            ],
+            "nullable": true
+          }
+        }
+      },
+      "CatalogService.Result-create": {
+        "title": "Result (for create)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "code"
+        ]
+      },
+      "CatalogService.Result-update": {
+        "title": "Result (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          }
+        }
+      },
+      "CatalogService.Result_texts": {
+        "title": "Result_texts",
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string",
+            "maxLength": 14
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "CatalogService.Result_texts-create": {
+        "title": "Result_texts (for create)",
+        "type": "object",
+        "properties": {
+          "locale": {
+            "type": "string",
+            "maxLength": 14
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          },
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "locale",
+          "code"
+        ]
+      },
+      "CatalogService.Result_texts-update": {
+        "title": "Result_texts (for update)",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 255,
+            "nullable": true
+          },
+          "descr": {
+            "type": "string",
+            "maxLength": 1000,
+            "nullable": true
+          }
+        }
+      },
       "CatalogService.Rounds": {
         "title": "Rounds",
         "type": "object",
@@ -2495,6 +3439,19 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "result": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CatalogService.Result"
+              }
+            ],
+            "nullable": true
+          },
+          "result_code": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         }
       },
@@ -2521,6 +3478,11 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "result_code": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "required": [
@@ -2538,6 +3500,11 @@
             "nullable": true
           },
           "par": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "result_code": {
             "type": "integer",
             "format": "int32",
             "nullable": true
