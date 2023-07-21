@@ -12,8 +12,8 @@ module.exports = class CatalogService extends cds.ApplicationService {
             }
         })
 
-        this.before('CREATE', 'Rounds', async function (req) {
-            log.info('Before Rounds Create')
+        this.before(['CREATE','UPDATE'], 'Rounds', async function (req) {
+            log.info('Before Rounds Create/Update')
             if (req.data) {
                 log.info(req.data)
                 if (req.data.holes) for (let each of req.data.holes) {
@@ -30,8 +30,8 @@ module.exports = class CatalogService extends cds.ApplicationService {
             }
         })
 
-        this.before('CREATE', 'Rounds.holes', async function (req) {
-            log.info('Before Rounds.holes Create')
+        this.before(['CREATE', 'UPDATE'], 'Rounds.holes', async function (req) {
+            log.info('Before Rounds.holes Create/Update')
             if (req.data) {
                 let score = req.data.shots.length
                 req.data.score = score
