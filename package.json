@@ -1,37 +1,41 @@
 {
-    "name": "cap-developer-challenge",
-    "version": "0.0.1",
-    "scripts": {
-      "start": "cds run",
-      "dev": "cds watch --livereload false",
-      "build": "cds build",
-      "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
-      "readme": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md"
+  "name": "cap-developer-challenge",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "cds run",
+    "dev": "cds watch --livereload false",
+    "build": "cds build",
+    "openapi": "cds compile srv --service all -o docs --to openapi --openapi:diagram",
+    "readme": "widdershins --summary docs/CatalogService.openapi3.json -o readme.md",
+    "watch-golf": "cds watch --open golf/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.11.0",
+    "@cap-js/graphql": "0.6.2",
+    "@sap/cds": "^7.0.3",
+    "@sap/cds-common-content": "^1.2.0",
+    "@sap/cds-dk": "^7.0.2",
+    "@sap/cds-fiori": "^1.0.0",
+    "cds-swagger-ui-express": "^0.6.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1.0.0",
+    "@sap/ux-specification": "^1.108.10",
+    "widdershins": "^4.0.1"
+  },
+  "cds": {
+    "cov2ap": {
+      "plugin": true
     },
-    "dependencies": {
-      "@sap/cds": "^7.0.3",
-      "@cap-js/graphql": "0.6.2",
-      "@sap/cds-common-content": "^1.2.0",
-      "@sap/cds-dk": "^7.0.2",
-      "@sap/cds-fiori": "^1.0.0",
-      "@cap-js-community/odata-v2-adapter": "^1.11.0",
-      "cds-swagger-ui-express": "^0.6.0",
-      "express": "^4.17.1"
-    },
-    "devDependencies": {
-      "@cap-js/sqlite": "^1.0.0",
-      "widdershins": "^4.0.1"
-    },
-    "cds": {
-      "cov2ap": {
-        "plugin": true
-      },
-      "protocols": {
-        "graphql": {
-          "path": "/graphql",
-          "impl": "@cap-js/graphql"
-        }
+    "protocols": {
+      "graphql": {
+        "path": "/graphql",
+        "impl": "@cap-js/graphql"
       }
     }
-  }
-  
+  },
+  "sapux": [
+    "app/golf"
+  ]
+}

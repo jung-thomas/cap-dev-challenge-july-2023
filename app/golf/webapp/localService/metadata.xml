@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="CatalogService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Rounds" EntityType="CatalogService.Rounds">
+                    <NavigationPropertyBinding Path="holes" Target="Rounds_holes"/>
+                </EntitySet>
+                <EntitySet Name="Result" EntityType="CatalogService.Result">
+                    <NavigationPropertyBinding Path="texts" Target="Result_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Result_texts"/>
+                </EntitySet>
+                <EntitySet Name="Quality" EntityType="CatalogService.Quality">
+                    <NavigationPropertyBinding Path="texts" Target="Quality_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Quality_texts"/>
+                </EntitySet>
+                <EntitySet Name="Rounds_holes" EntityType="CatalogService.Rounds_holes">
+                    <NavigationPropertyBinding Path="up_" Target="Rounds"/>
+                    <NavigationPropertyBinding Path="shots" Target="Rounds_holes_shots"/>
+                    <NavigationPropertyBinding Path="result" Target="Result"/>
+                </EntitySet>
+                <EntitySet Name="Rounds_holes_shots" EntityType="CatalogService.Rounds_holes_shots">
+                    <NavigationPropertyBinding Path="up_" Target="Rounds_holes"/>
+                    <NavigationPropertyBinding Path="quality" Target="Quality"/>
+                </EntitySet>
+                <EntitySet Name="Result_texts" EntityType="CatalogService.Result_texts"/>
+                <EntitySet Name="Quality_texts" EntityType="CatalogService.Quality_texts"/>
+            </EntityContainer>
+            <EntityType Name="Rounds">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="title" Type="Edm.String" MaxLength="111"/>
+                <NavigationProperty Name="holes" Type="Collection(CatalogService.Rounds_holes)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Result">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(CatalogService.Result_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="CatalogService.Result_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Quality">
+                <Key>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="10" Nullable="false"/>
+                <NavigationProperty Name="texts" Type="Collection(CatalogService.Quality_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="CatalogService.Quality_texts">
+                    <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Rounds_holes">
+                <Key>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="CatalogService.Rounds" Nullable="false" Partner="holes">
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="holeNumber" Type="Edm.Int32"/>
+                <NavigationProperty Name="shots" Type="Collection(CatalogService.Rounds_holes_shots)" Partner="up_">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <Property Name="par" Type="Edm.Int32"/>
+                <Property Name="score" Type="Edm.Int32"/>
+                <NavigationProperty Name="result" Type="CatalogService.Result">
+                    <ReferentialConstraint Property="result_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="result_code" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Rounds_holes_shots">
+                <Key>
+                    <PropertyRef Name="up__up__ID"/>
+                    <PropertyRef Name="up__ID"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <NavigationProperty Name="up_" Type="CatalogService.Rounds_holes" Nullable="false" Partner="shots">
+                    <ReferentialConstraint Property="up__up__ID" ReferencedProperty="up__ID"/>
+                    <ReferentialConstraint Property="up__ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="up__up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="up__ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="quality" Type="CatalogService.Quality">
+                    <ReferentialConstraint Property="quality_code" ReferencedProperty="code"/>
+                </NavigationProperty>
+                <Property Name="quality_code" Type="Edm.String" MaxLength="10"/>
+                <Property Name="distance" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="Result_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Quality_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="code"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <Property Name="code" Type="Edm.String" MaxLength="10" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="CatalogService.Rounds">
+                <Annotation Term="UI.PresentationVariant">
+                    <Record Type="UI.PresentationVariantType">
+                        <PropertyValue Property="SortOrder">
+                            <Collection>
+                                <Record Type="Common.SortOrderType">
+                                    <PropertyValue Property="Property" PropertyPath="title"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Visualizations">
+                            <Collection>
+                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="title"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="createdAt"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="createdBy"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="modifiedAt"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="modifiedBy"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>title</PropertyPath>
+                        <PropertyPath>createdAt</PropertyPath>
+                        <PropertyPath>createdBy</PropertyPath>
+                        <PropertyPath>modifiedAt</PropertyPath>
+                        <PropertyPath>modifiedBy</PropertyPath>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="title"/>
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="TypeName" String="{i18n>Round}"/>
+                            <PropertyValue Property="TypeNamePlural" String="{i18n>Rounds}"/>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.HeaderFacets">
+                            <Collection>
+                                <Record Type="UI.ReferenceFacet">
+                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Admin"/>
+                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                                </Record>
+                            </Collection>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="Description">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="title"/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="title"/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.FieldGroup" Qualifier="Admin">
+                            <Record Type="UI.FieldGroupType">
+                                <PropertyValue Property="Data">
+                                    <Collection>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="createdBy"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="createdAt"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="modifiedBy"/>
+                                        </Record>
+                                        <Record Type="UI.DataField">
+                                            <PropertyValue Property="Value" Path="modifiedAt"/>
+                                        </Record>
+                                    </Collection>
+                                </PropertyValue>
+                            </Record>
+                        </Annotation>
+                        <Annotation Term="UI.Facets">
+                            <Collection>
+                                <Record Type="UI.CollectionFacet">
+                                    <PropertyValue Property="ID" String="Details"/>
+                                    <PropertyValue Property="Label" String="{i18n>details}"/>
+                                        <PropertyValue Property="Facets">
+                                            <Collection>
+                                                <Record Type="UI.ReferenceFacet">
+                                                    <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                        <Record Type="UI.ReferenceFacet">
+                                            <PropertyValue Property="Label" String="{i18n>holes}"/>
+                                                <PropertyValue Property="Target" AnnotationPath="holes/@UI.PresentationVariant"/>
+                                            </Record>
+                                        </Collection>
+                                    </Annotation>
+                                </Annotations>
+                                <Annotations Target="CatalogService.EntityContainer/Rounds">
+                                    <Annotation Term="UI.PresentationVariant">
+                                        <Record Type="UI.PresentationVariantType">
+                                            <PropertyValue Property="SortOrder">
+                                                <Collection>
+                                                    <Record Type="Common.SortOrderType">
+                                                        <PropertyValue Property="Property" PropertyPath="title"/>
+                                                    </Record>
+                                                </Collection>
+                                            </PropertyValue>
+                                            <PropertyValue Property="Visualizations">
+                                                <Collection>
+                                                    <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                </Collection>
+                                            </PropertyValue>
+                                        </Record>
+                                    </Annotation>
+                                </Annotations>
+                                <Annotations Target="CatalogService.Rounds/createdAt">
+                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                    <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                    </Annotations>
+                                    <Annotations Target="CatalogService.Rounds/createdBy">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                            <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                            </Annotations>
+                                            <Annotations Target="CatalogService.Rounds/modifiedAt">
+                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                </Annotations>
+                                                <Annotations Target="CatalogService.Rounds/modifiedBy">
+                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                        <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="CatalogService.Result">
+                                                            <Annotation Term="UI.PresentationVariant">
+                                                                <Record Type="UI.PresentationVariantType">
+                                                                    <PropertyValue Property="SortOrder">
+                                                                        <Collection>
+                                                                            <Record Type="Common.SortOrderType">
+                                                                                <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                            </Record>
+                                                                        </Collection>
+                                                                    </PropertyValue>
+                                                                    <PropertyValue Property="Visualizations">
+                                                                        <Collection>
+                                                                            <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                        </Collection>
+                                                                    </PropertyValue>
+                                                                </Record>
+                                                            </Annotation>
+                                                            <Annotation Term="UI.LineItem">
+                                                                <Collection>
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" Path="code"/>
+                                                                    </Record>
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" Path="name"/>
+                                                                        <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                    </Record>
+                                                                    <Record Type="UI.DataField">
+                                                                        <PropertyValue Property="Value" Path="descr"/>
+                                                                        <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                    </Record>
+                                                                </Collection>
+                                                            </Annotation>
+                                                            <Annotation Term="UI.SelectionFields">
+                                                                <Collection>
+                                                                    <PropertyPath>code</PropertyPath>
+                                                                    <PropertyPath>name</PropertyPath>
+                                                                    <PropertyPath>descr</PropertyPath>
+                                                                </Collection>
+                                                            </Annotation>
+                                                            <Annotation Term="UI.HeaderInfo">
+                                                                <Record Type="UI.HeaderInfoType">
+                                                                    <PropertyValue Property="Title">
+                                                                        <Record Type="UI.DataField">
+                                                                            <PropertyValue Property="Value" Path="code"/>
+                                                                        </Record>
+                                                                    </PropertyValue>
+                                                                    <PropertyValue Property="TypeName" String="{i18n>Result}"/>
+                                                                        <PropertyValue Property="TypeNamePlural" String="{i18n>Results}"/>
+                                                                            <PropertyValue Property="Description">
+                                                                                <Record Type="UI.DataField">
+                                                                                    <PropertyValue Property="Value" Path="code"/>
+                                                                                </Record>
+                                                                            </PropertyValue>
+                                                                        </Record>
+                                                                    </Annotation>
+                                                                    <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                                                                        <Record Type="UI.FieldGroupType">
+                                                                            <PropertyValue Property="Data">
+                                                                                <Collection>
+                                                                                    <Record Type="UI.DataField">
+                                                                                        <PropertyValue Property="Value" Path="code"/>
+                                                                                    </Record>
+                                                                                    <Record Type="UI.DataField">
+                                                                                        <PropertyValue Property="Value" Path="name"/>
+                                                                                    </Record>
+                                                                                    <Record Type="UI.DataField">
+                                                                                        <PropertyValue Property="Value" Path="descr"/>
+                                                                                    </Record>
+                                                                                </Collection>
+                                                                            </PropertyValue>
+                                                                        </Record>
+                                                                    </Annotation>
+                                                                    <Annotation Term="UI.Facets">
+                                                                        <Collection>
+                                                                            <Record Type="UI.CollectionFacet">
+                                                                                <PropertyValue Property="ID" String="TextDetails"/>
+                                                                                <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                    <PropertyValue Property="Facets">
+                                                                                        <Collection>
+                                                                                            <Record Type="UI.ReferenceFacet">
+                                                                                                <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </PropertyValue>
+                                                                                    </Record>
+                                                                                    <Record Type="UI.ReferenceFacet">
+                                                                                        <PropertyValue Property="Label" String="{i18n>localeDetails}"/>
+                                                                                            <PropertyValue Property="Target" AnnotationPath="texts/@UI.PresentationVariant"/>
+                                                                                        </Record>
+                                                                                    </Collection>
+                                                                                </Annotation>
+                                                                                <Annotation Term="UI.Identification">
+                                                                                    <Collection>
+                                                                                        <Record Type="UI.DataField">
+                                                                                            <PropertyValue Property="Value" Path="name"/>
+                                                                                        </Record>
+                                                                                    </Collection>
+                                                                                </Annotation>
+                                                                            </Annotations>
+                                                                            <Annotations Target="CatalogService.EntityContainer/Result">
+                                                                                <Annotation Term="UI.PresentationVariant">
+                                                                                    <Record Type="UI.PresentationVariantType">
+                                                                                        <PropertyValue Property="SortOrder">
+                                                                                            <Collection>
+                                                                                                <Record Type="Common.SortOrderType">
+                                                                                                    <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </PropertyValue>
+                                                                                        <PropertyValue Property="Visualizations">
+                                                                                            <Collection>
+                                                                                                <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                            </Collection>
+                                                                                        </PropertyValue>
+                                                                                    </Record>
+                                                                                </Annotation>
+                                                                            </Annotations>
+                                                                            <Annotations Target="CatalogService.Result/name">
+                                                                                <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                </Annotations>
+                                                                                <Annotations Target="CatalogService.Result/descr">
+                                                                                    <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="CatalogService.Quality">
+                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                    <Collection>
+                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                            <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                        </Record>
+                                                                                                    </Collection>
+                                                                                                </PropertyValue>
+                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                    <Collection>
+                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                    </Collection>
+                                                                                                </PropertyValue>
+                                                                                            </Record>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="UI.LineItem">
+                                                                                            <Collection>
+                                                                                                <Record Type="UI.DataField">
+                                                                                                    <PropertyValue Property="Value" Path="code"/>
+                                                                                                </Record>
+                                                                                                <Record Type="UI.DataField">
+                                                                                                    <PropertyValue Property="Value" Path="name"/>
+                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                </Record>
+                                                                                                <Record Type="UI.DataField">
+                                                                                                    <PropertyValue Property="Value" Path="descr"/>
+                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="UI.SelectionFields">
+                                                                                            <Collection>
+                                                                                                <PropertyPath>code</PropertyPath>
+                                                                                                <PropertyPath>name</PropertyPath>
+                                                                                                <PropertyPath>descr</PropertyPath>
+                                                                                            </Collection>
+                                                                                        </Annotation>
+                                                                                        <Annotation Term="UI.HeaderInfo">
+                                                                                            <Record Type="UI.HeaderInfoType">
+                                                                                                <PropertyValue Property="Title">
+                                                                                                    <Record Type="UI.DataField">
+                                                                                                        <PropertyValue Property="Value" Path="code"/>
+                                                                                                    </Record>
+                                                                                                </PropertyValue>
+                                                                                                <PropertyValue Property="TypeName" String="{i18n>Quality}"/>
+                                                                                                    <PropertyValue Property="TypeNamePlural" String="{i18n>Quality}"/>
+                                                                                                        <PropertyValue Property="Description">
+                                                                                                            <Record Type="UI.DataField">
+                                                                                                                <PropertyValue Property="Value" Path="code"/>
+                                                                                                            </Record>
+                                                                                                        </PropertyValue>
+                                                                                                    </Record>
+                                                                                                </Annotation>
+                                                                                                <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                                                                                                    <Record Type="UI.FieldGroupType">
+                                                                                                        <PropertyValue Property="Data">
+                                                                                                            <Collection>
+                                                                                                                <Record Type="UI.DataField">
+                                                                                                                    <PropertyValue Property="Value" Path="code"/>
+                                                                                                                </Record>
+                                                                                                                <Record Type="UI.DataField">
+                                                                                                                    <PropertyValue Property="Value" Path="name"/>
+                                                                                                                </Record>
+                                                                                                                <Record Type="UI.DataField">
+                                                                                                                    <PropertyValue Property="Value" Path="descr"/>
+                                                                                                                </Record>
+                                                                                                            </Collection>
+                                                                                                        </PropertyValue>
+                                                                                                    </Record>
+                                                                                                </Annotation>
+                                                                                                <Annotation Term="UI.Facets">
+                                                                                                    <Collection>
+                                                                                                        <Record Type="UI.CollectionFacet">
+                                                                                                            <PropertyValue Property="ID" String="TextDetails"/>
+                                                                                                            <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                                                <PropertyValue Property="Facets">
+                                                                                                                    <Collection>
+                                                                                                                        <Record Type="UI.ReferenceFacet">
+                                                                                                                            <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                                                                <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                                                                                                                            </Record>
+                                                                                                                        </Collection>
+                                                                                                                    </PropertyValue>
+                                                                                                                </Record>
+                                                                                                                <Record Type="UI.ReferenceFacet">
+                                                                                                                    <PropertyValue Property="Label" String="{i18n>localeDetails}"/>
+                                                                                                                        <PropertyValue Property="Target" AnnotationPath="texts/@UI.PresentationVariant"/>
+                                                                                                                    </Record>
+                                                                                                                </Collection>
+                                                                                                            </Annotation>
+                                                                                                            <Annotation Term="UI.Identification">
+                                                                                                                <Collection>
+                                                                                                                    <Record Type="UI.DataField">
+                                                                                                                        <PropertyValue Property="Value" Path="name"/>
+                                                                                                                    </Record>
+                                                                                                                </Collection>
+                                                                                                            </Annotation>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="CatalogService.EntityContainer/Quality">
+                                                                                                            <Annotation Term="UI.PresentationVariant">
+                                                                                                                <Record Type="UI.PresentationVariantType">
+                                                                                                                    <PropertyValue Property="SortOrder">
+                                                                                                                        <Collection>
+                                                                                                                            <Record Type="Common.SortOrderType">
+                                                                                                                                <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                                            </Record>
+                                                                                                                        </Collection>
+                                                                                                                    </PropertyValue>
+                                                                                                                    <PropertyValue Property="Visualizations">
+                                                                                                                        <Collection>
+                                                                                                                            <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                        </Collection>
+                                                                                                                    </PropertyValue>
+                                                                                                                </Record>
+                                                                                                            </Annotation>
+                                                                                                        </Annotations>
+                                                                                                        <Annotations Target="CatalogService.Quality/name">
+                                                                                                            <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                            </Annotations>
+                                                                                                            <Annotations Target="CatalogService.Quality/descr">
+                                                                                                                <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                </Annotations>
+                                                                                                                <Annotations Target="CatalogService.Rounds_holes">
+                                                                                                                    <Annotation Term="UI.PresentationVariant">
+                                                                                                                        <Record Type="UI.PresentationVariantType">
+                                                                                                                            <PropertyValue Property="SortOrder">
+                                                                                                                                <Collection>
+                                                                                                                                    <Record Type="Common.SortOrderType">
+                                                                                                                                        <PropertyValue Property="Property" PropertyPath="holeNumber"/>
+                                                                                                                                    </Record>
+                                                                                                                                </Collection>
+                                                                                                                            </PropertyValue>
+                                                                                                                            <PropertyValue Property="Visualizations">
+                                                                                                                                <Collection>
+                                                                                                                                    <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                </Collection>
+                                                                                                                            </PropertyValue>
+                                                                                                                        </Record>
+                                                                                                                    </Annotation>
+                                                                                                                    <Annotation Term="UI.LineItem">
+                                                                                                                        <Collection>
+                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                <PropertyValue Property="Value" Path="holeNumber"/>
+                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                            </Record>
+                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                <PropertyValue Property="Value" Path="par"/>
+                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                            </Record>
+                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                <PropertyValue Property="Value" Path="score"/>
+                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                            </Record>
+                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                <PropertyValue Property="Value" Path="result/name"/>
+                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                            </Record>
+                                                                                                                        </Collection>
+                                                                                                                    </Annotation>
+                                                                                                                    <Annotation Term="UI.SelectionFields">
+                                                                                                                        <Collection>
+                                                                                                                            <PropertyPath>holeNumber</PropertyPath>
+                                                                                                                            <PropertyPath>result_code</PropertyPath>
+                                                                                                                        </Collection>
+                                                                                                                    </Annotation>
+                                                                                                                    <Annotation Term="UI.HeaderInfo">
+                                                                                                                        <Record Type="UI.HeaderInfoType">
+                                                                                                                            <PropertyValue Property="Title">
+                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                    <PropertyValue Property="Value" Path="holeNumber"/>
+                                                                                                                                </Record>
+                                                                                                                            </PropertyValue>
+                                                                                                                            <PropertyValue Property="TypeName" String="{i18n>hole}"/>
+                                                                                                                                <PropertyValue Property="TypeNamePlural" String="{i18n>holes}"/>
+                                                                                                                                </Record>
+                                                                                                                            </Annotation>
+                                                                                                                            <Annotation Term="UI.FieldGroup" Qualifier="Description">
+                                                                                                                                <Record Type="UI.FieldGroupType">
+                                                                                                                                    <PropertyValue Property="Data">
+                                                                                                                                        <Collection>
+                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                <PropertyValue Property="Value" Path="holeNumber"/>
+                                                                                                                                            </Record>
+                                                                                                                                        </Collection>
+                                                                                                                                    </PropertyValue>
+                                                                                                                                </Record>
+                                                                                                                            </Annotation>
+                                                                                                                            <Annotation Term="UI.FieldGroup" Qualifier="Details">
+                                                                                                                                <Record Type="UI.FieldGroupType">
+                                                                                                                                    <PropertyValue Property="Data">
+                                                                                                                                        <Collection>
+                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                <PropertyValue Property="Value" Path="par"/>
+                                                                                                                                            </Record>
+                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                <PropertyValue Property="Value" Path="score"/>
+                                                                                                                                            </Record>
+                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                <PropertyValue Property="Value" Path="result/name"/>
+                                                                                                                                            </Record>
+                                                                                                                                        </Collection>
+                                                                                                                                    </PropertyValue>
+                                                                                                                                </Record>
+                                                                                                                            </Annotation>
+                                                                                                                            <Annotation Term="UI.Facets">
+                                                                                                                                <Collection>
+                                                                                                                                    <Record Type="UI.CollectionFacet">
+                                                                                                                                        <PropertyValue Property="ID" String="Details"/>
+                                                                                                                                        <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                                                                            <PropertyValue Property="Facets">
+                                                                                                                                                <Collection>
+                                                                                                                                                    <Record Type="UI.ReferenceFacet">
+                                                                                                                                                        <PropertyValue Property="Label" String="{i18n>details}"/>
+                                                                                                                                                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Details"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                            <Record Type="UI.ReferenceFacet">
+                                                                                                                                                <PropertyValue Property="Label" String="{i18n>shots}"/>
+                                                                                                                                                    <PropertyValue Property="Target" AnnotationPath="shots/@UI.PresentationVariant"/>
+                                                                                                                                                </Record>
+                                                                                                                                            </Collection>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.EntityContainer/Rounds_holes">
+                                                                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="holeNumber"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes/holeNumber">
+                                                                                                                                        <Annotation Term="Validation.Minimum" Int="1"/>
+                                                                                                                                        <Annotation Term="Validation.Maximum" Int="18"/>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes/par">
+                                                                                                                                        <Annotation Term="Validation.Minimum" Int="3"/>
+                                                                                                                                        <Annotation Term="Validation.Maximum" Int="5"/>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes/score">
+                                                                                                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes/result_code">
+                                                                                                                                        <Annotation Term="Common.ValueList">
+                                                                                                                                            <Record Type="Common.ValueListType">
+                                                                                                                                                <PropertyValue Property="Label" String="Result"/>
+                                                                                                                                                <PropertyValue Property="CollectionPath" String="Result"/>
+                                                                                                                                                <PropertyValue Property="Parameters">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                            <PropertyValue Property="LocalDataProperty" PropertyPath="result_code"/>
+                                                                                                                                                            <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                        <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                            <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes_shots">
+                                                                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="ID"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                        <Annotation Term="UI.LineItem">
+                                                                                                                                            <Collection>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="distance"/>
+                                                                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                </Record>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="quality/name"/>
+                                                                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                </Record>
+                                                                                                                                            </Collection>
+                                                                                                                                        </Annotation>
+                                                                                                                                        <Annotation Term="UI.SelectionFields">
+                                                                                                                                            <Collection>
+                                                                                                                                                <PropertyPath>quality_code</PropertyPath>
+                                                                                                                                                <PropertyPath>distance</PropertyPath>
+                                                                                                                                            </Collection>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.EntityContainer/Rounds_holes_shots">
+                                                                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="ID"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes_shots/quality_code">
+                                                                                                                                        <Annotation Term="Common.ValueList">
+                                                                                                                                            <Record Type="Common.ValueListType">
+                                                                                                                                                <PropertyValue Property="Label" String="Quality"/>
+                                                                                                                                                <PropertyValue Property="CollectionPath" String="Quality"/>
+                                                                                                                                                <PropertyValue Property="Parameters">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.ValueListParameterInOut">
+                                                                                                                                                            <PropertyValue Property="LocalDataProperty" PropertyPath="quality_code"/>
+                                                                                                                                                            <PropertyValue Property="ValueListProperty" String="code"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                        <Record Type="Common.ValueListParameterDisplayOnly">
+                                                                                                                                                            <PropertyValue Property="ValueListProperty" String="name"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Rounds_holes_shots/distance">
+                                                                                                                                        <Annotation Term="Validation.Minimum" Int="0"/>
+                                                                                                                                        <Annotation Term="Validation.Maximum" Int="800"/>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Result_texts">
+                                                                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="locale"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                        <Annotation Term="UI.LineItem">
+                                                                                                                                            <Collection>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="code"/>
+                                                                                                                                                </Record>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="locale"/>
+                                                                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                </Record>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="name"/>
+                                                                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                </Record>
+                                                                                                                                                <Record Type="UI.DataField">
+                                                                                                                                                    <PropertyValue Property="Value" Path="descr"/>
+                                                                                                                                                    <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                </Record>
+                                                                                                                                            </Collection>
+                                                                                                                                        </Annotation>
+                                                                                                                                        <Annotation Term="UI.SelectionFields">
+                                                                                                                                            <Collection>
+                                                                                                                                                <PropertyPath>code</PropertyPath>
+                                                                                                                                                <PropertyPath>locale</PropertyPath>
+                                                                                                                                                <PropertyPath>name</PropertyPath>
+                                                                                                                                                <PropertyPath>descr</PropertyPath>
+                                                                                                                                            </Collection>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.EntityContainer/Result_texts">
+                                                                                                                                        <Annotation Term="UI.PresentationVariant">
+                                                                                                                                            <Record Type="UI.PresentationVariantType">
+                                                                                                                                                <PropertyValue Property="SortOrder">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                        <Record Type="Common.SortOrderType">
+                                                                                                                                                            <PropertyValue Property="Property" PropertyPath="locale"/>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                                <PropertyValue Property="Visualizations">
+                                                                                                                                                    <Collection>
+                                                                                                                                                        <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                    </Collection>
+                                                                                                                                                </PropertyValue>
+                                                                                                                                            </Record>
+                                                                                                                                        </Annotation>
+                                                                                                                                    </Annotations>
+                                                                                                                                    <Annotations Target="CatalogService.Result_texts/locale">
+                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                                        </Annotations>
+                                                                                                                                        <Annotations Target="CatalogService.Result_texts/name">
+                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                            </Annotations>
+                                                                                                                                            <Annotations Target="CatalogService.Result_texts/descr">
+                                                                                                                                                <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                </Annotations>
+                                                                                                                                                <Annotations Target="CatalogService.Quality_texts">
+                                                                                                                                                    <Annotation Term="UI.PresentationVariant">
+                                                                                                                                                        <Record Type="UI.PresentationVariantType">
+                                                                                                                                                            <PropertyValue Property="SortOrder">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <Record Type="Common.SortOrderType">
+                                                                                                                                                                        <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                    <Record Type="Common.SortOrderType">
+                                                                                                                                                                        <PropertyValue Property="Property" PropertyPath="locale"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </PropertyValue>
+                                                                                                                                                            <PropertyValue Property="Visualizations">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </PropertyValue>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Annotation>
+                                                                                                                                                    <Annotation Term="UI.LineItem">
+                                                                                                                                                        <Collection>
+                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                <PropertyValue Property="Value" Path="code"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                <PropertyValue Property="Value" Path="locale"/>
+                                                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                <PropertyValue Property="Value" Path="name"/>
+                                                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                            <Record Type="UI.DataField">
+                                                                                                                                                                <PropertyValue Property="Value" Path="descr"/>
+                                                                                                                                                                <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+                                                                                                                                                            </Record>
+                                                                                                                                                        </Collection>
+                                                                                                                                                    </Annotation>
+                                                                                                                                                    <Annotation Term="UI.SelectionFields">
+                                                                                                                                                        <Collection>
+                                                                                                                                                            <PropertyPath>code</PropertyPath>
+                                                                                                                                                            <PropertyPath>locale</PropertyPath>
+                                                                                                                                                            <PropertyPath>name</PropertyPath>
+                                                                                                                                                            <PropertyPath>descr</PropertyPath>
+                                                                                                                                                        </Collection>
+                                                                                                                                                    </Annotation>
+                                                                                                                                                </Annotations>
+                                                                                                                                                <Annotations Target="CatalogService.EntityContainer/Quality_texts">
+                                                                                                                                                    <Annotation Term="UI.PresentationVariant">
+                                                                                                                                                        <Record Type="UI.PresentationVariantType">
+                                                                                                                                                            <PropertyValue Property="SortOrder">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <Record Type="Common.SortOrderType">
+                                                                                                                                                                        <PropertyValue Property="Property" PropertyPath="code"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                    <Record Type="Common.SortOrderType">
+                                                                                                                                                                        <PropertyValue Property="Property" PropertyPath="locale"/>
+                                                                                                                                                                    </Record>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </PropertyValue>
+                                                                                                                                                            <PropertyValue Property="Visualizations">
+                                                                                                                                                                <Collection>
+                                                                                                                                                                    <AnnotationPath>@UI.LineItem</AnnotationPath>
+                                                                                                                                                                </Collection>
+                                                                                                                                                            </PropertyValue>
+                                                                                                                                                        </Record>
+                                                                                                                                                    </Annotation>
+                                                                                                                                                </Annotations>
+                                                                                                                                                <Annotations Target="CatalogService.Quality_texts/locale">
+                                                                                                                                                    <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                                                                                    </Annotations>
+                                                                                                                                                    <Annotations Target="CatalogService.Quality_texts/name">
+                                                                                                                                                        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+                                                                                                                                                        </Annotations>
+                                                                                                                                                        <Annotations Target="CatalogService.Quality_texts/descr">
+                                                                                                                                                            <Annotation Term="Common.Label" String="{i18n>Description}"/>
+                                                                                                                                                            </Annotations>
+                                                                                                                                                        </Schema>
+                                                                                                                                                    </edmx:DataServices>
+                                                                                                                                                </edmx:Edmx>

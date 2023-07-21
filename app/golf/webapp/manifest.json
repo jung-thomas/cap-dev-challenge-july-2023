@@ -1,0 +1,160 @@
+{
+  "_version": "1.49.0",
+  "sap.app": {
+    "id": "golf",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.10.0",
+      "toolsId": "b8e5024d-ea43-4d44-aa29-fc495ba4a617"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/browse/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.116.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "golf.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "RoundsList",
+          "target": "RoundsList"
+        },
+        {
+          "pattern": "Rounds({key}):?query:",
+          "name": "RoundsObjectPage",
+          "target": "RoundsObjectPage"
+        },
+        {
+          "pattern": "Rounds({key})/holes({key2}):?query:",
+          "name": "Rounds_holesObjectPage",
+          "target": "Rounds_holesObjectPage"
+        }
+      ],
+      "targets": {
+        "RoundsList": {
+          "type": "Component",
+          "id": "RoundsList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "entitySet": "Rounds",
+              "variantManagement": "Page",
+              "navigation": {
+                "Rounds": {
+                  "detail": {
+                    "route": "RoundsObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "RoundsObjectPage": {
+          "type": "Component",
+          "id": "RoundsObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "Rounds",
+              "navigation": {
+                "holes": {
+                  "detail": {
+                    "route": "Rounds_holesObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Rounds_holesObjectPage": {
+          "type": "Component",
+          "id": "Rounds_holesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "entitySet": "Rounds_holes"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
