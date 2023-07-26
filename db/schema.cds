@@ -15,7 +15,6 @@ entity Rounds : cuid, managed {
 }
 
 aspect Round2People : cuid {
-  round : Association to one Rounds;
   people : Association to one external.Players;
 }
 

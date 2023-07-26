@@ -206,17 +206,11 @@ annotate Round2People with @( // header-level annotations
         LineItem           : [
             {
                 $Type            : 'UI.DataField',
-                Value            : round_ID,
-                ![@UI.Importance]: #High
-            },
-            {
-                $Type            : 'UI.DataField',
                 Value            : people_name,
                 ![@UI.Importance]: #High
             }
         ],
         SelectionFields    : [
-            round_ID,
             people_name
         ]
     },
@@ -234,9 +228,6 @@ annotate Round2People with @( // header-level annotations
             Value: people_name
         }, ]},
         FieldGroup #Details    : {Data: [{
-            $Type: 'UI.DataField',
-            Value: round_ID,
-        },{
             $Type: 'UI.DataField',
             Value: people_name,
         }]}         

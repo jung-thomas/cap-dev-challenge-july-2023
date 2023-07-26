@@ -23,44 +23,20 @@ annotate golf.Rounds with @(
 };
 
 annotate golf.Round2People with {
-    ID     @Core.Computed;
-    round   @(
-        Common.Text                     : round.title,
-        Common.TextArrangement          : #TextOnly,
-        title                           : '{i18n>title}',
-        Common.ValueListWithFixedValues : false,
-        Common.ValueList                : {
-            CollectionPath : 'Rounds',
-            Parameters     : [
-                {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'round_ID',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'title'
-                },
-            ]
-        }
-    );
+    ID     @Core.Computed;    
     people @(
-        Common.Text                     : people.name,
+        Common.Text                     : people_name,
         Common.TextArrangement          : #TextOnly,
         title                           : '{i18n>players}',
         Common.ValueListWithFixedValues : false,
         Common.ValueList                : {
-            CollectionPath : 'external.Players',
+            CollectionPath : 'Players',
             Parameters     : [
                 {
                     $Type             : 'Common.ValueListParameterInOut',
                     LocalDataProperty : 'people_name',
-                    ValueListProperty : 'ID'
-                },
-                {
-                    $Type             : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty : 'name'
-                },
+                }
             ]
         }
     );
