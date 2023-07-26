@@ -7,6 +7,7 @@ annotate golf.Rounds with @(
     Common.SemanticKey: [title]
 ) {
     ID    @(Common.Text: title);
+    players  @(title : '{i18n>players}');
     title @(
         title                          : '{i18n>title}',
         Common.ValueListWithFixedValues: false,
@@ -19,6 +20,50 @@ annotate golf.Rounds with @(
             }]
         }
     )
+};
+
+annotate golf.Round2People with {
+    ID     @Core.Computed;
+    round   @(
+        Common.Text                     : round.title,
+        Common.TextArrangement          : #TextOnly,
+        title                           : '{i18n>title}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'Rounds',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'round_ID',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'title'
+                },
+            ]
+        }
+    );
+    people @(
+        Common.Text                     : people.name,
+        Common.TextArrangement          : #TextOnly,
+        title                           : '{i18n>players}',
+        Common.ValueListWithFixedValues : false,
+        Common.ValueList                : {
+            CollectionPath : 'external.Players',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'people_name',
+                    ValueListProperty : 'ID'
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name'
+                },
+            ]
+        }
+    );
 };
 
 annotate golf.Holes with @(

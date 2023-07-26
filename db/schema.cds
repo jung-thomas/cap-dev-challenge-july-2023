@@ -4,12 +4,19 @@ using {
   cuid
 } from '@sap/cds/common';
 using from '@sap/cds-common-content';
+using {RemoteService as external} from '../srv/external/RemoteService';
 
 namespace golf;
 
 entity Rounds : cuid, managed {
   title : String(111);
   holes : Composition of many Holes;
+  players : Composition of many Round2People;
+}
+
+aspect Round2People : cuid {
+  round : Association to one Rounds;
+  people : Association to one external.Players;
 }
 
 aspect Holes : cuid {

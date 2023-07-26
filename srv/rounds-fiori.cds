@@ -1,6 +1,7 @@
 using CatalogService as cs from './cat-service';
 using golf.Holes from '../db/schema';
 using golf.Shots from '../db/schema';
+using golf.Round2People from '../db/schema';
 
 annotate cs.Rounds with @( // header-level annotations
     // ---------------------------------------------------------------------------
@@ -109,6 +110,11 @@ annotate cs.Rounds with @( // header-level annotations
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>holes}',
             Target: 'holes/@UI.PresentationVariant'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : '{i18n>players}',
+            Target: 'players/@UI.PresentationVariant'
         }
     ]
 );
@@ -186,6 +192,66 @@ annotate Holes with @( // header-level annotations
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>shots}',
             Target: 'shots/@UI.PresentationVariant'
+        }
+    ]
+);
+
+
+annotate Round2People with @( // header-level annotations
+    UI       : {
+        PresentationVariant: {
+            SortOrder     : [{Property: people_name}],
+            Visualizations: ['@UI.LineItem']
+        },
+        LineItem           : [
+            {
+                $Type            : 'UI.DataField',
+                Value            : round_ID,
+                ![@UI.Importance]: #High
+            },
+            {
+                $Type            : 'UI.DataField',
+                Value            : people_name,
+                ![@UI.Importance]: #High
+            }
+        ],
+        SelectionFields    : [
+            round_ID,
+            people_name
+        ]
+    },
+    UI       : {
+        HeaderInfo             : {
+            Title         : {
+                $Type: 'UI.DataField',
+                Value: people_name,
+            },
+            TypeName      : '{i18n>player}',
+            TypeNamePlural: '{i18n>players}'
+        },
+        FieldGroup #Description: {Data: [{
+            $Type: 'UI.DataField',
+            Value: people_name
+        }, ]},
+        FieldGroup #Details    : {Data: [{
+            $Type: 'UI.DataField',
+            Value: round_ID,
+        },{
+            $Type: 'UI.DataField',
+            Value: people_name,
+        }]}         
+    },
+    // Page Facets
+    UI.Facets: [
+        {
+            $Type : 'UI.CollectionFacet',
+            ID    : 'Details',
+            Label : '{i18n>details}',
+            Facets: [{
+                $Type : 'UI.ReferenceFacet',
+                Label : '{i18n>details}',
+                Target: '@UI.FieldGroup#Details'
+            }]
         }
     ]
 );
