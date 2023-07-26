@@ -1,7 +1,14 @@
 const cds = require('@sap/cds')
 const log = cds.log('exit')
 module.exports = class CatalogService extends cds.ApplicationService {
-    init() {
+    async init() {
+
+        const remote = await cds.connect.to('RemoteService')
+        this.on('*', 'Players', (req) => {
+            console.log('>> delegating to remote service...')
+            return remote.run(req.query)
+        })
+
         this.after('READ', 'Rounds', async function (rounds, req) {
             log.info('After Rounds Read')
             for (let round of rounds) {
@@ -12,7 +19,7 @@ module.exports = class CatalogService extends cds.ApplicationService {
             }
         })
 
-        this.before(['CREATE','UPDATE'], 'Rounds', async function (req) {
+        this.before(['CREATE', 'UPDATE'], 'Rounds', async function (req) {
             log.info('Before Rounds Create/Update')
             if (req.data) {
                 log.info(req.data)
